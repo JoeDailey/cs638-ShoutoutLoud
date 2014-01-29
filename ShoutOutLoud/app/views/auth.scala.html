@@ -1,0 +1,47 @@
+<html>
+	<link rel="stylesheet" type="text/css" href="../../public/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../public/stylesheets/main.css">
+	<script type="text/javascript" src="../../public/javascripts/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="../../public/javascripts/bootstrap.min.js"></script>
+	<style type="text/css">
+	#auth-container{
+		float: right;
+	}
+	.input-group{
+		width:100%;
+		margin-bottom: 5px;
+	}
+	</style>
+	<div id="auth-container" class="col-md-6 col-sm-12">
+		<form id="sign-in" class="well" method="POST" action="/login">
+			<div class="input-group">
+				<span class="input-group-addon">@</span>
+				<input type="email" class="form-control" name="handle" placeholder="Handle">
+			</div>
+			<div class="input-group">
+				<input type="password" class="form-control" name="password" placeholder="Password">
+			</div>
+		</form>
+		<form id="sign-in" class="well" method="POST" action="/login">
+			<div class="input-group">
+				<span class="input-group-addon">@</span>
+				<input type="text" class="form-control" name="handle" placeholder="Handle">
+			</div>
+			<div class="input-group">
+				<input type="text" class="form-control" name="name" placeholder="Name">
+			</div>
+			<div class="input-group">
+				<input type="email" class="form-control" name="email" placeholder="Email">
+			</div>
+			<div class="input-group">
+				<input type="password" class="form-control" name="password" placeholder="Password">
+			</div>
+			<div class="input-group">
+				<input type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button">Register!</button>
+				</span>
+			</div>
+		</form>
+	</div>
+</html>
