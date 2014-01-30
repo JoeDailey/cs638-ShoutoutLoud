@@ -1,32 +1,92 @@
 package models;
 
-import play.data.validation.Constraints;
-import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.List;
 
-@Entity
-public class Task extends Model {
+public class Profile {
+	private long id;
+	private String fullName;
+	private String email;
+	private String handle;
+	private String location;
+	
+	// Summary stats about the profile. Required for the home page summary section.
+	private int numTweets;
+	private int numFollowers;
+	private int numFollowing;
+	
+	public Profile(long id, String fullName, String email, String handle, String location) {
+		super();
+		this.id = id;
+		this.fullName = fullName;
+		this.email = email;
+		this.handle = handle;
+		this.location = location;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Profile [id=").append(id).append(", fullName=")
+				.append(fullName).append(", handle=").append(handle)
+				.append("]");
+		return builder.toString();
+	}
 
-	@Id
-	public long id;
 
-	@Constraints.Required
-	public String full_name;
 
-	@Constraints.Required
-	public String email;
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getFullName() {
+		return fullName;
+	}
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getHandle() {
+		return handle;
+	}
+	public void setHandle(String handle) {
+		this.handle = handle;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
-	@Constraints.Required
-	public String handle;
+	public int getNumTweets() {
+		return numTweets;
+	}
 
-	@Constraints.Required
-	public String password;
+	public void setNumTweets(int numTweets) {
+		this.numTweets = numTweets;
+	}
 
-	@Constraints.Required
-	public String location;
+	public int getNumFollowers() {
+		return numFollowers;
+	}
 
-public static Finder<Long, Profile> find = new Finder(Long.class, Profile.class);
+	public void setNumFollowers(int numFollowers) {
+		this.numFollowers = numFollowers;
+	}
+
+	public int getNumFollowing() {
+		return numFollowing;
+	}
+
+	public void setNumFollowing(int numFollowing) {
+		this.numFollowing = numFollowing;
+	}
+	
 }

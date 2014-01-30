@@ -1,24 +1,64 @@
 package models;
 
-import play.data.validation.Constraints;
-import play.db.ebean.Model;
+import java.util.Date;
+public class Tweet{
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.List;
-import java.sql.Timestamp
+	private long id;
+	private String content;
+	private Date timestamp;
+	
+	// Who created this tweet ? Required to show full name and handle as part of the
+	// tweet on the feeds page.
+	private Profile tweetCreator;
+	
+	public Tweet(long id, String content, Date timestamp) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.timestamp = timestamp;
+	}
+	
+	public Tweet(long id, String content) {
+		super();
+		this.id = id;
+		this.content = content;
+		this.timestamp = new Date();
+	}
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Tweet [id=").append(id).append(", content=")
+				.append(content).append(", timestamp=").append(timestamp)
+				.append("]");
+		return builder.toString();
+	}
 
-@Entity
-public class Tweet extends Model {
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Date getTimestamp() {
+		return timestamp;
+	}
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
 
-	@Id
-	public long id;
+	public Profile getTweetCreator() {
+		return tweetCreator;
+	}
 
-	@Constraints.Required
-	public String content;
-
-	@Constraints.Required
-	public Timestamp timestamp;
-
-public static Finder<Long, Tweet> find = new Finder(Long.class, Tweet.class);
+	public void setTweetCreator(Profile tweetCreator) {
+		this.tweetCreator = tweetCreator;
+	}
 }

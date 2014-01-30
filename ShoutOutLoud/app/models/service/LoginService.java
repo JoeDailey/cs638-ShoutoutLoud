@@ -2,6 +2,12 @@ package models.service;
 
 import models.Profile;
 
+/**
+ * Service class that exposes all methods related to the login functionality of the
+ * application.
+ * @author excelsior
+ *
+ */
 public interface LoginService {
 	
 	public void login(String handle, String password);
