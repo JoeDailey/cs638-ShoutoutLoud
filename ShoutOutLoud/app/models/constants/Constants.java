@@ -1,3 +1,5 @@
+package models.constants;
+
 public final class Constants {
 
 	// How many tweets will be displayed on a page
