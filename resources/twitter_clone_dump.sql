@@ -61,7 +61,8 @@ CREATE TABLE profile (
     handle character varying(50) NOT NULL,
     full_name character varying(255) NOT NULL,
     location character varying(255) NOT NULL,
-    password character varying(255) NOT NULL
+    password character varying(255) NOT NULL,
+    email character varying(255)
 );
 
 
@@ -126,9 +127,9 @@ COPY following (src_uid, tgt_uid) FROM stdin;
 -- Data for Name: profile; Type: TABLE DATA; Schema: public; Owner: db_user
 --
 
-COPY profile (id, handle, full_name, location, password) FROM stdin;
-1	test	Shishir Prasad	Madison	test
-3	skp	Mohan	Madison	skp
+COPY profile (id, handle, full_name, location, password, email) FROM stdin;
+1	test	Shishir Prasad	Madison	test	test@gmail.com
+3	skp	Mohan	Madison	skp	skp@gmail.com
 \.
 
 
