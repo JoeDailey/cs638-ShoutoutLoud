@@ -1,77 +1,95 @@
 *{
-		box-sizing:border-box;
-		-moz-box-sizing:border-box; /* Firefox */
-		padding: 0px;
-		margin: 0px;
-	}
-	a{
-		text-decoration: none;
-		color:black;
-	}
-	a:hover{
-		color: #00CC00;
-		text-decoration: none;
-	}
-	.shout-container{
-		padding: 10px;
-	}
-	.shout{
-		width: 100%;
-		min-height:50px;
-		background-color: #efefef;
-		padding: 10px;
-		border-bottom: 2px solid #e1e1e1;
-	}
-	.shout:hover .shout-content a{
-		text-decoration: underline; 
-		color:#00CC00;
-	}
-	.shout-avatar{
-		width: 50px;
-		height: 50px;
-		float: left;
-		margin-right: 10px;
-	}
-	.shout-avatar img{
-		height: 100%;
-		width:100%;
-	}
-	.shout-avatar img:hover{
-		height: 100%;
-		width:100%;
-		box-shadow: 0px 0px 3px #00CC00;
-	}
-	.shout-data{
-		overflow: hidden;
-	}
+	box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	padding: 0px;
+	margin: 0px;
+}
+a{
+	text-decoration: none;
+	color:black;
+}
+a:hover{
+	color: #00CC00;
+	text-decoration: none;
+}
+/*landing-auth*/
 
-	.shout-info{
-		padding: 3px;
-		color: black;
-		text-decoration: none;
-	}
-	.shout-names{
-		float:left;
-	}
-	.shout-names span{
-		font-size: 0.8em;
-		color: #999;
-	}.shout-names:hover span{
-		text-decoration: none;
-	}
-	.shout-names:hover strong{
-		text-decoration: underline;
-	}
-	.shout-time{
-		float: right;
-	}
-	.shout-time:hover{
-		text-decoration: underline;
-	}
-	.shout-options{
-		float:right;
-		display: none;
-	}
-	.shout:hover .shout-options{
-		display: block;
-	}
+#landing-row{
+	height: 100%;
+}
+#landing-container{
+	height: 100%;
+	background-color: black;
+	background-size: 100%;
+}
+#auth-container{
+	float: left;
+}
+.input-group{
+	width:100%;
+	margin-bottom: 5px;
+}
+/*Shouts*/
+.shout-container{
+	padding: 10px;
+}
+.shout{
+	width: 100%;
+	min-height:50px;
+	background-color: #efefef;
+	padding: 10px;
+	border-bottom: 2px solid #e1e1e1;
+}
+.shout:hover .shout-content a{
+	text-decoration: underline; 
+	color:#00CC00;
+}
+.shout-avatar{
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 10px;
+}
+.shout-avatar img{
+	height: 100%;
+	width:100%;
+}
+.shout-avatar img:hover{
+	height: 100%;
+	width:100%;
+	box-shadow: 0px 0px 3px #00CC00;
+}
+.shout-data{
+	overflow: hidden;
+}
+
+.shout-info{
+	padding: 3px;
+	color: black;
+	text-decoration: none;
+}
+.shout-names{
+	float:left;
+}
+.shout-names span{
+	font-size: 0.8em;
+	color: #999;
+}.shout-names:hover span{
+	text-decoration: none;
+}
+.shout-names:hover strong{
+	text-decoration: underline;
+}
+.shout-time{
+	float: right;
+}
+.shout-time:hover{
+	text-decoration: underline;
+}
+.shout-options{
+	float:right;
+	display: none;
+}
+.shout:hover .shout-options{
+	display: block;
+}

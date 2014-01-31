@@ -1,0 +1,68 @@
+<html>
+	<link rel="stylesheet" type="text/css" href="../../public/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../public/stylesheets/main.css">
+	<script type="text/javascript" src="../../public/javascripts/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="../../public/javascripts/bootstrap.min.js"></script>
+	<style type="text/css">
+		#welcome{
+			background: orange;
+			height: 50px;
+		}
+		#landing-container{
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var image = "landing_0"+Math.floor(Math.random()*6)
+			$("#landing-container").css("background-image", "url(../../public/images/"+image+".jpg)")
+		});
+	</script>
+
+	<div id="landing-row" class="row">
+		<div id="landing-container" class="col-md-12">
+			<div id="welcome" class=" col-md-6 col-sm-12">
+				
+			</div>
+
+			<div id="auth-container" class="right col-md-6 col-sm-12">
+				<form id="sign-in" class="well" method="POST" action="/login">
+					<div class="input-group">
+						<span class="input-group-addon">@</span>
+						<input type="email" class="form-control" name="handle" placeholder="Handle">
+					</div>
+					<div class="input-group">
+						<input type="password" class="form-control" name="password" placeholder="Password">
+					</div>
+				</form>
+				<form id="sign-in" class="well" method="POST" action="/login">
+					<div class="input-group">
+						<span class="input-group-addon">@</span>
+						<input type="text" class="form-control" name="handle" placeholder="Handle">
+					</div>
+					<div class="input-group">
+						<input type="text" class="form-control" name="name" placeholder="Name">
+					</div>
+					<div class="input-group">
+						<input type="email" class="form-control" name="email" placeholder="Email">
+					</div>
+					<div class="input-group">
+						<input type="password" class="form-control" name="password" placeholder="Password">
+					</div>
+					<div class="input-group">
+						<input type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button">Register!</button>
+						</span>
+					</div>
+				</form>
+			</div>
+
+		<div class="clearfix"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+
+
+</html>
