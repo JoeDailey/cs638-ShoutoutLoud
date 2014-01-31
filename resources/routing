@@ -1,0 +1,14 @@
+
+GETs
+/   :if loged in -> feed, else -> landing
+/u/{user handle}
+/h/{hastag}
+/settings :if loged in -> feed, else -> settings
+/search?query={string+of+queries}
+/api/feed/?last_id={id}
+
+
+POSTs
+/api/login data:{handle or email, password}
+/api/register data:{handle, name, email, password}
+/api/post data:{post}->cookie for id

@@ -1,83 +1,104 @@
 <html>
+<meta name="viewport" content="width=device-width" />
 	<link rel="stylesheet" type="text/css" href="../../public/stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../../public/stylesheets/main.css">
 	<script type="text/javascript" src="../../public/javascripts/jquery-1.9.0.min.js"></script>
 	<script type="text/javascript" src="../../public/javascripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../public/javascripts/blur.js"></script>
 	<style type="text/css">
-		#welcome{
-			background: orange;
-			height: 50px;
-		}
 		#landing-container{
 			margin: 0px;
 			padding: 0px;
 		}
-		.vert-center{
-			width: 100%;
-			height: 100%;
+		#inner-center{
+			display:table-cell;
+			vertical-align: middle;
 		}
 		.well{
 			border-width:0px;
 			background-color: rgba(0,0,0,0.5);
 		}
-		.exciting{
+		#welcome-container span{
+			text-align: right;
+			float:right;
 			color: white;
-			font-size: 4em;
-			text-shadow: 3px 3px 0px rgba(0,0,0, 0.5)
+			/*text-shadow: 0.05em 0.05em 0px rgba(0,0,0, 0.5),  0em 0em 2px rgba(0,0,0, 0.5);*/
+			text-shadow: 0px 0.05em   0px #b2a98f,
+			             0px 0.1em 10px rgba(0,0,0,0.23),
+			             0px 0.15em  2px rgba(0,0,0,0.2),
+			             0px 0.2em 30px rgba(0,0,0,0.5);
+		}
+		.exciting{
+			font-size: 6em;
 		}
 		.sub-exciting{
-			color: white;
-			font-size: 3em;
-			text-shadow: 3px 3px 0px rgba(0,0,0, 0.5)
+			font-size: 4em;
+		}
+		.super-sub-exciting{
+			font-size: 2em;
+			text-shadow: 0.1em 0.1em 0px rgba(0,0,0, 0.5)
 		}
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var image = "landing_0"+Math.floor(Math.random()*6)
-			$("#landing-container").css("background-image", "url(../../public/images/"+image+".jpg)")
+			$("#vert-center").css("background-image", "url(../../public/images/"+image+".jpg) ");
+			// try{
+			// 	$('.well').blurjs({
+			// 		source: '#vert-center',
+			// 		radius: 7,
+			// 		overlay: 'rgba(255,255,255,0.4)'
+			// 	});
+			// }catch(e){
+
+			// }
 		});
 	</script>
-	<div class="vert-center">
-		<div id="landing-container" class="row col-md-12">
-			<div id="welcome-container" class="right col-md-6 col-sm-12">
-				<span class="exciting">ShoutOutLoud!</span><br>
-				<span class="sub-exciting">Welcome!</span>
-				<span></span>
-			</div>
+	<div id="vert-center">
+		<div id="inner-center">
+			<div id="landing-container" class="row col-md-12">
+				<div id="welcome-container" class="right col-sm-6 col-xs-12">
+					<span class="exciting">Shout Out Loud!</span><br>
+					<div class="clearfix"></div>
+					<span class="sub-exciting">Welcome!</span><br>
+					<div class="clearfix"></div>
+					<span class="super-sub-exciting">Login or Register</span>
+				</div>
 
-			<div id="auth-container" class="right col-md-6 col-sm-12">
-				<form id="sign-in" class="well" method="POST" action="/login">
-					<div class="input-group">
-						<span class="input-group-addon">@</span>
-						<input type="email" class="form-control" name="handle" placeholder="Handle">
-					</div>
-					<div class="input-group">
-						<input type="password" class="form-control" name="password" placeholder="Password">
-					</div>
-				</form>
-				<form id="sign-in" class="well" method="POST" action="/login">
-					<div class="input-group">
-						<span class="input-group-addon">@</span>
-						<input type="text" class="form-control" name="handle" placeholder="Handle">
-					</div>
-					<div class="input-group">
-						<input type="text" class="form-control" name="name" placeholder="Name">
-					</div>
-					<div class="input-group">
-						<input type="email" class="form-control" name="email" placeholder="Email">
-					</div>
-					<div class="input-group">
-						<input type="password" class="form-control" name="password" placeholder="Password">
-					</div>
-					<div class="input-group">
-						<input type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">Register!</button>
-						</span>
-					</div>
-				</form>
+				<div id="auth-container" class="right col-md-6 col-lg-4 col-sm-6 col-xs-12">
+					<form id="sign-in" class="well" method="POST" action="/login">
+						<div class="input-group">
+							<span class="input-group-addon">@</span>
+							<input type="email" class="form-control" name="handle" placeholder="Handle">
+						</div>
+						<div class="input-group">
+							<input type="password" class="form-control" name="password" placeholder="Password">
+						</div>
+					</form>
+					<form id="sign-in" class="well" method="POST" action="/login">
+						<div class="input-group">
+							<span class="input-group-addon">@</span>
+							<input type="text" class="form-control" name="handle" placeholder="Handle">
+						</div>
+						<div class="input-group">
+							<input type="text" class="form-control" name="name" placeholder="Name">
+						</div>
+						<div class="input-group">
+							<input type="email" class="form-control" name="email" placeholder="Email">
+						</div>
+						<div class="input-group">
+							<input type="password" class="form-control" name="password" placeholder="Password">
+						</div>
+						<div class="input-group">
+							<input type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">Register!</button>
+							</span>
+						</div>
+					</form>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
 	</div>	
 
