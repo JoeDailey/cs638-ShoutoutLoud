@@ -10,6 +10,7 @@ public class Constants {
 
 	// Number of entries to show/fetch by default.
 	public static int NUM_ENTRIES_PER_PAGE = 20;
+	public static int NUM_TRENDS_TO_SHOW = 10;
 	
 	// Database constants
 	public static String DB_USER = "db_user";

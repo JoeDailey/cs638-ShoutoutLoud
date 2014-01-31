@@ -1,8 +1,5 @@
 package models.service;
 
-import java.util.List;
-
-import models.Tweet;
 
 /**
  * Service class that exposes all methods related to managing the tweets.
