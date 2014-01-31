@@ -10,11 +10,11 @@ import models.Profile;
  */
 public interface LoginService {
 	
-	public void login(String handle, String password);
+	public boolean login(String handle, String password);
 
-	public Profile register(String email, String handle, String password);
+	public Profile register(String email, String full_name, String handle, String password, String location);
 
 	public boolean authenticate(String handle, String password);
 
-	public void logout(Profile profile);
+	public void logout();
 }
