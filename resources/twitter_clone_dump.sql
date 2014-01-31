@@ -68,71 +68,16 @@ CREATE TABLE profile (
 ALTER TABLE public.profile OWNER TO db_user;
 
 --
--- Name: profile_id_seq; Type: SEQUENCE; Schema: public; Owner: db_user
---
-
-CREATE SEQUENCE profile_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.profile_id_seq OWNER TO db_user;
-
---
--- Name: profile_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: db_user
---
-
-ALTER SEQUENCE profile_id_seq OWNED BY profile.id;
-
-
---
 -- Name: trend; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
 --
 
 CREATE TABLE trend (
-    id integer NOT NULL,
-    keyword character varying(50) NOT NULL,
-    is_hashtag boolean NOT NULL
+    keyword character varying(255),
+    count integer
 );
 
 
 ALTER TABLE public.trend OWNER TO db_user;
-
---
--- Name: trend_id_seq; Type: SEQUENCE; Schema: public; Owner: db_user
---
-
-CREATE SEQUENCE trend_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.trend_id_seq OWNER TO db_user;
-
---
--- Name: trend_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: db_user
---
-
-ALTER SEQUENCE trend_id_seq OWNED BY trend.id;
-
-
---
--- Name: trend_to_tweet; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
---
-
-CREATE TABLE trend_to_tweet (
-    tid integer NOT NULL,
-    tweet_id integer NOT NULL
-);
-
-
-ALTER TABLE public.trend_to_tweet OWNER TO db_user;
 
 --
 -- Name: tweet; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
@@ -148,27 +93,6 @@ CREATE TABLE tweet (
 ALTER TABLE public.tweet OWNER TO db_user;
 
 --
--- Name: tweet_id_seq; Type: SEQUENCE; Schema: public; Owner: db_user
---
-
-CREATE SEQUENCE tweet_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.tweet_id_seq OWNER TO db_user;
-
---
--- Name: tweet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: db_user
---
-
-ALTER SEQUENCE tweet_id_seq OWNED BY tweet.id;
-
-
---
 -- Name: user_to_tweet; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
 --
 
@@ -181,31 +105,11 @@ CREATE TABLE user_to_tweet (
 ALTER TABLE public.user_to_tweet OWNER TO db_user;
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY profile ALTER COLUMN id SET DEFAULT nextval('profile_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY trend ALTER COLUMN id SET DEFAULT nextval('trend_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY tweet ALTER COLUMN id SET DEFAULT nextval('tweet_id_seq'::regclass);
-
-
---
 -- Data for Name: follower; Type: TABLE DATA; Schema: public; Owner: db_user
 --
 
 COPY follower (src_uid, tgt_uid) FROM stdin;
+1	3
 \.
 
 
@@ -214,6 +118,7 @@ COPY follower (src_uid, tgt_uid) FROM stdin;
 --
 
 COPY following (src_uid, tgt_uid) FROM stdin;
+3	1
 \.
 
 
@@ -222,36 +127,26 @@ COPY following (src_uid, tgt_uid) FROM stdin;
 --
 
 COPY profile (id, handle, full_name, location, password) FROM stdin;
+1	test	Shishir Prasad	Madison	test
+3	skp	Mohan	Madison	skp
 \.
-
-
---
--- Name: profile_id_seq; Type: SEQUENCE SET; Schema: public; Owner: db_user
---
-
-SELECT pg_catalog.setval('profile_id_seq', 1, false);
 
 
 --
 -- Data for Name: trend; Type: TABLE DATA; Schema: public; Owner: db_user
 --
 
-COPY trend (id, keyword, is_hashtag) FROM stdin;
-\.
-
-
---
--- Name: trend_id_seq; Type: SEQUENCE SET; Schema: public; Owner: db_user
---
-
-SELECT pg_catalog.setval('trend_id_seq', 1, false);
-
-
---
--- Data for Name: trend_to_tweet; Type: TABLE DATA; Schema: public; Owner: db_user
---
-
-COPY trend_to_tweet (tid, tweet_id) FROM stdin;
+COPY trend (keyword, count) FROM stdin;
+f283d990-1156-4d42-983b-115020be8abc	1
+hello	2
+13367f46-966b-46ec-b417-b46c30c8cae6	1
+#test	3
+world	2
+97078c6e-a8ee-4236-9f23-71fcb4c028c6	1
+test	11
+from	11
+class	11
+tweet	11
 \.
 
 
@@ -260,14 +155,21 @@ COPY trend_to_tweet (tid, tweet_id) FROM stdin;
 --
 
 COPY tweet (id, content, create_time) FROM stdin;
+1	hello world #test	2014-01-30 09:11:21.781771
+2	hello world again #test	2014-01-30 09:11:40.657855
+3	shout out loud .. #test	2014-01-30 09:11:49.379036
+4	tweet from test class ..	2014-01-30 13:02:45.076379
+5	tweet from test class 6efd886d-fcad-4ded-a8e9-4670c52a167d	2014-01-30 14:48:19.660757
+6	tweet from test class 0544b6ae-a884-43fc-b15e-2aa0f72a384f	2014-01-30 14:56:52.079621
+7	tweet from test class fde0ed39-612b-4f50-913e-8dbf68f1bbdc	2014-01-30 15:05:26.554975
+8	tweet from test class 8edc7043-b64e-4f36-a2a0-eaaf2150c385	2014-01-30 15:09:53.068273
+9	tweet from test class f283d990-1156-4d42-983b-115020be8abc	2014-01-30 15:13:37.491079
+10	tweet from test class ed99f00c-1780-470c-8b4b-a0e05ef6463b	2014-01-30 17:18:31.191366
+11	tweet from test class 935c58a7-134a-4306-a265-2eb91fe7b0da	2014-01-30 17:21:14.313129
+12	tweet from test class 254a9659-6a4e-45c1-92fd-15af754aac80	2014-01-30 17:23:17.0586
+13	tweet from test class 13367f46-966b-46ec-b417-b46c30c8cae6	2014-01-30 17:26:16.610851
+14	tweet from test class 97078c6e-a8ee-4236-9f23-71fcb4c028c6	2014-01-30 17:27:06.760846
 \.
-
-
---
--- Name: tweet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: db_user
---
-
-SELECT pg_catalog.setval('tweet_id_seq', 1, false);
 
 
 --
@@ -275,6 +177,20 @@ SELECT pg_catalog.setval('tweet_id_seq', 1, false);
 --
 
 COPY user_to_tweet (uid, tid) FROM stdin;
+1	1
+1	2
+1	3
+1	4
+1	5
+1	6
+1	7
+1	8
+1	9
+1	10
+1	11
+1	12
+1	13
+1	14
 \.
 
 
@@ -286,24 +202,10 @@ CREATE INDEX time_idx ON tweet USING btree (create_time);
 
 
 --
--- Name: trend_idx; Type: INDEX; Schema: public; Owner: db_user; Tablespace: 
---
-
-CREATE UNIQUE INDEX trend_idx ON trend USING btree (id);
-
-
---
 -- Name: tweet_idx; Type: INDEX; Schema: public; Owner: db_user; Tablespace: 
 --
 
 CREATE UNIQUE INDEX tweet_idx ON tweet USING btree (id);
-
-
---
--- Name: tweets_of_trend_idx; Type: INDEX; Schema: public; Owner: db_user; Tablespace: 
---
-
-CREATE INDEX tweets_of_trend_idx ON trend_to_tweet USING btree (tid);
 
 
 --
@@ -335,27 +237,11 @@ CREATE INDEX users_following_idx ON following USING btree (src_uid);
 
 
 --
--- Name: trend_fk1; Type: FK CONSTRAINT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY trend_to_tweet
-    ADD CONSTRAINT trend_fk1 FOREIGN KEY (tid) REFERENCES trend(id) ON DELETE CASCADE;
-
-
---
 -- Name: tweet_fk1; Type: FK CONSTRAINT; Schema: public; Owner: db_user
 --
 
 ALTER TABLE ONLY user_to_tweet
     ADD CONSTRAINT tweet_fk1 FOREIGN KEY (tid) REFERENCES tweet(id) ON DELETE CASCADE;
-
-
---
--- Name: tweet_fk2; Type: FK CONSTRAINT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY trend_to_tweet
-    ADD CONSTRAINT tweet_fk2 FOREIGN KEY (tweet_id) REFERENCES tweet(id) ON DELETE CASCADE;
 
 
 --
