@@ -66,6 +66,15 @@
             $('.form-control').focus(function(){
                 $($(this).parent()).removeClass('has-error');
             });
+            if (navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var loc = {
+                        lat:position.coords.latitude, 
+                        lng:position.coords.longitude
+                    }
+                    $('#sign-up-location').val(JSON.stringify(loc));
+                });
+            }
         });
     </script>
     <div id="vert-center">
@@ -100,7 +109,7 @@
                             <input id="sign-up-handle" type="text" class="form-control" name="handle" placeholder="Handle">
                         </div>
                         <div class="input-group">
-                            <input id="sign-up-name" type="text" class="form-control" name="name" placeholder="Name">
+                            <input id="sign-up-name" type="text" class="form-control" name="fullname" placeholder="Name">
                         </div>
                         <div class="input-group">
                             <input id="sign-up-email" type="email" class="form-control" name="email" placeholder="Email">
@@ -111,9 +120,10 @@
                         <div class="input-group">
                             <input id="sign-up-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Register!</button>
+                                <input class="btn btn-default" type="submit" value="Register!">
                             </span>
                         </div>
+                            <input id="sign-up-location" type="text" name="location" style="display:none">
                     </form>
                 </div>
                 <div class="clearfix"></div>

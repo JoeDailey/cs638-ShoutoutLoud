@@ -1,7 +1,22 @@
 @(tweets: List[models.Tweet])
 
-@main("Welcome to Play") {
+@part_header()
 
-    @play20.welcome("Hello world", style = "Java")
-
-}
+<div class="content">
+	<div class="row col-md-12">
+	<div id="panel-left" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
+		@part_me()
+		@part_compose()
+	</div>
+		<div id="panel-right" class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
+			@if(tweets.length > 0){
+				@for(t <- tweets){
+					@part_shout(t)
+				}
+			}else{
+				@part_no_shout()
+			}
+		</div>
+	</div>
+</div>
+@part_footer()

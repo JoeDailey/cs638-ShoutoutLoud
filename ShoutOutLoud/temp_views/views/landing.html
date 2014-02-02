@@ -41,7 +41,7 @@
 	</style>
 	<script type="text/javascript">
 		$(document).ready(function(){
-			var image = "landing_0"+Math.floor(Math.random()*6)
+			var image = "landing_0"+Math.floor(Math.random()*7);
 			$("#vert-center").css("background-image", "url(../../public/images/"+image+".jpg) ");
 			$('#sign-in').submit(function(e){
 				var hasError = false;
@@ -109,7 +109,7 @@
 						<div class="input-group">
 							<input id="sign-up-password-confirm" type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">Register!</button>
+								<input class="btn btn-default" type="submit" value="Register!">
 							</span>
 						</div>
 					</form>
