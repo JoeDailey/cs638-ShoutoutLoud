@@ -18,7 +18,7 @@ import models.utils.DBUtils;
 public class SearchServiceImpl implements SearchService {
 
 	@Override
-	public List<Tweet> searchTweetsByHandle(Long maxTid, String handle) {
+	public List<Tweet> searchTweetsByHandle(String handle, Long maxTid) {
 		if(maxTid == null) {
 			maxTid = Long.MAX_VALUE;
 		}
@@ -58,17 +58,22 @@ public class SearchServiceImpl implements SearchService {
 	}
 
 	@Override
-	public List<Tweet> searchTweetsByKeyword(String keyword) {
+	public List<Tweet> searchTweetsByKeyword(String keyword, Long maxTid) {
+		if(maxTid == null) {
+			maxTid = Long.MAX_VALUE;
+		}
+		
 		Connection dbConn = DBUtils.getDBConnection();
 		List<Tweet> tweets = Lists.newArrayList();
 		
 		String tweetFetchSQL = "SELECT p.id AS uid, t.id AS tid, t.content, t.create_time FROM tweet t"
 				+ " JOIN user_to_tweet u ON (t.id = u.tid) JOIN profile p ON (p.id = u.uid) "
-				+ " WHERE t.content LIKE '%" + keyword +"%' LIMIT ?";
+				+ " WHERE t.content LIKE '%" + keyword +"%' AND t.id < ? LIMIT ?";
 		PreparedStatement preparedSql = null;
 		try {
 			preparedSql = dbConn.prepareStatement(tweetFetchSQL);
-			preparedSql.setInt(1, Constants.NUM_ENTRIES_PER_PAGE);
+			preparedSql.setLong(1, maxTid);
+			preparedSql.setInt(2, Constants.NUM_ENTRIES_PER_PAGE);
 			ResultSet results = preparedSql.executeQuery();
 			
 			while(results.next()) {
@@ -235,7 +240,7 @@ public class SearchServiceImpl implements SearchService {
 		Profile profile = null;
 		Connection dbConn = DBUtils.getDBConnection();
 
-		String profileSQL = "SELECT p.id AS uid, p.handle, p.full_name, p.location, COUNT(t.tid) AS tweet_cnt, "
+		String profileSQL = "SELECT p.id AS uid, p.handle, p.email, p.full_name, p.location, COUNT(t.tid) AS tweet_cnt, "
 				+ " COUNT(DISTINCT(f1.tgt_uid)) AS follower_cnt, COUNT(DISTINCT(f2.src_uid)) AS following_cnt"
 				+ " FROM profile p LEFT OUTER JOIN user_to_tweet t ON (p.id = t.uid) LEFT OUTER JOIN follower f1 ON (p.id = f1.src_uid)"
 				+ " LEFT OUTER JOIN following f2 ON (f2.tgt_uid = p.id) WHERE p.id = ? GROUP by p.id, p.handle, "
@@ -251,12 +256,13 @@ public class SearchServiceImpl implements SearchService {
 				String fullName = results.getString("full_name");
 				String location = results.getString("location");
 				String handle = results.getString("handle");
+				String email = results.getString("email");
 				
 				int tweetCnt = results.getInt("tweet_cnt");
 				int followers = results.getInt("follower_cnt");
 				int following = results.getInt("following_cnt");
 				
-				profile = new Profile(userId, fullName, "NA", handle, location);
+				profile = new Profile(userId, fullName, email, handle, location);
 				profile.setNumTweets(tweetCnt);
 				profile.setNumFollowers(followers);
 				profile.setNumFollowing(following);

@@ -25,4 +25,11 @@ public class Constants {
 	public static String FOLLOWING_TBL = "following";
 	public static String USER_TO_TWEET_TBL = "user_to_tweet";
 	public static String TREND_TO_TWEET_TBL = "trend_to_tweet";
+	
+	// SESSION CONSTANTS
+	public static final String LOGGED_USER = "logged_user";
+	public static final String LOGGED_PROFILE = "logged_profile";
+	
+	// FORM CONSTANTS
+	public static final String TWEET_CONTENT = "content";
 }
