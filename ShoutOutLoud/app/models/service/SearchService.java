@@ -20,14 +20,14 @@ public interface SearchService {
 	 * @param handle
 	 * @return
 	 */
-	public List<Tweet> searchTweetsByHandle(Long maxTid, String handle);
+	public List<Tweet> searchTweetsByHandle(String handle, Long maxTid);
 
 	/**
 	 * Retrieve tweets given the search keyword
 	 * @param keyword
 	 * @return
 	 */
-	public List<Tweet> searchTweetsByKeyword(String keyword);
+	public List<Tweet> searchTweetsByKeyword(String keyword, Long maxTid);
 
 	/**
 	 * Get the list of followers for a user

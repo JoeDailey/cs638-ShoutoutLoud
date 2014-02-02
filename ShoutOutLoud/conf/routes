@@ -2,8 +2,21 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
-GET     /                           controllers.Application.index()
+# Landing page
+GET     /                           controllers.Login.index()
+
+# Login routes
+POST    /login                      controllers.Login.login()
+POST    /register                   controllers.Login.register()
+GET     /logout                     controllers.Login.logout()
+
+# Search routes
+GET     /user/:handle              controllers.Search.searchByProfile(handle: String)
+GET     /search/:keyword           controllers.Search.searchByKeyword(keyword: String, maxId: Long ?= 100000)
+
+# Tweet manager routes
+POST    /compose                controllers.TweetManager.compose()
+GET     /feed                   controllers.TweetManager.feed(maxId: Long ?= 100000)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
