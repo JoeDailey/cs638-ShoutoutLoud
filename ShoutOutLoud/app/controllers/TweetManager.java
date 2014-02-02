@@ -3,13 +3,14 @@ package controllers;
 import java.util.List;
 
 import views.html.home;
-
+import static play.data.Form.*;
 import models.Constants;
 import models.Tweet;
 import models.service.SearchService;
 import models.service.SearchServiceImpl;
 import models.service.TweetService;
 import models.service.TweetServiceImpl;
+import play.Logger;
 import play.data.DynamicForm;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -38,23 +39,12 @@ public class TweetManager extends Controller {
 		String handle = session().get(Constants.LOGGED_USER);
 		boolean isTweetAdded = tweetService.insertTweet(handle, tweet);
 		if(isTweetAdded) {
-			return ok("Tweet added !!");
+			Logger.info("Tweet successfully added !!");
 		}
+		
+		return redirect("/feed");
 	}
 	
-	/**
-	 * Manages the tweet feed of the current logged in user.
-	 * 
-	 * @return
-	 */
-	public static Result feed()
-	{
-		String handle = session().get(Constants.LOGGED_USER);
-		List<Tweet> tweets = searchService.searchTweetsByHandle(handle, null);
-		
-		return ok(home.render(tweets));
-	}
-
 	/**
 	 * Manages the tweet feed of the current logged in user.
 	 * 

@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import views.html.profile;
+import views.html.search;
 import models.Profile;
 import models.Tweet;
 import models.service.SearchService;
@@ -31,19 +32,6 @@ public class Search extends Controller {
 		Profile user = searchService.searchProfileByHandle(handle);
 		
 		return ok(profile.render(user));
-	}
-	
-	/**
-	 * Controller route for searching a keyword in tweets.
-	 * 
-	 * This can be used for searching a simple string, hashtag or a trend.
-	 * @return
-	 */
-	public static Result searchByKeyword(String keyword)
-	{
-		List<Tweet> tweets = searchService.searchTweetsByKeyword(keyword, null);
-		
-		return ok(search.render(tweets));
 	}
 	
 	/**
