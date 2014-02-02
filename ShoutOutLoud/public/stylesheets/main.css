@@ -42,6 +42,26 @@ a:hover{
 	width:100%;
 	margin-bottom: 5px;
 }
+/*feed*/
+#panel-left{
+	float:left;
+}
+#panel-right{
+	overflow-y: scroll;
+	height: 90%;
+}
+#element::-webkit-scrollbar {
+	display: none; 
+}
+#element {
+    -ms-overflow-style: none;
+}
+::-webkit-scrollbar { 
+	display: none; 
+}
+body{
+	background-color:rgba(0,0,0,.2);
+}
 /*Shouts*/
 .shout-container{
 	padding: 10px;
@@ -153,4 +173,31 @@ a:hover{
 }
 #trends{
 	margin-top: 10px;
+}
+/*profile*/
+.profile-stats-container{
+	margin-top: 10px;
+	width: 100%;
+	display: table;
+}
+.profile-stats{
+	width: 100%;
+	display: table-row;
+}
+.profile-stats div{
+	display: table-cell;
+	width: 30%;
+	text-align: center;
+}
+.profile-stats div:not(:last-child){
+	border-right:2px solid #efefef;
+}
+#them{
+	width: 100%;
+	text-align: center;
+}
+#them img{
+	height: 100px;
+	display: block;
+	margin: auto;
 }
