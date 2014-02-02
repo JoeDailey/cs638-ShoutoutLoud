@@ -2,10 +2,13 @@
 
 @part_header()
 
-<div>
+<div class="content">
 	<div class="row col-md-12">
+	<div id="panel-left" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
 		@part_me()
-		<div id="panel-right" class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+		@part_compose()
+	</div>
+		<div id="panel-right" class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
 			@if(tweets.length > 0){
 				@for(t <- tweets){
 					@part_shout(t)
@@ -15,17 +18,5 @@
 			}
 		</div>
 	</div>
-</div>
-<style type="text/css">
-	#profile{
-		position: fixed;
-	}
-	#profile iframe{
-		width: 100%;
-		height: 100%;
-	}
-</style>
-<div id="profile" class="col-md-6">
-	<!-- <iframe src="/user/asdf"></iframe> -->
 </div>
 @part_footer()

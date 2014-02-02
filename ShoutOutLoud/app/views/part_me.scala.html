@@ -1,32 +1,17 @@
-<div id="panel-left" class="col-lg-4 col-md-3 col-sm-3 col-xs-12">
-	<div class="shout-container">
-		<div class="shout" id="me">
-			<div id="me-top">
-				<div class="shout-avatar" id="me-avatar">
-					<img src="http://placehold.it/50x50">
-				</div>
-				<a id="me-name" class="shout-names" href="/user/asdf">
-					<strong>Joe Dailey</strong>
-					<span>@@DaileyJoe</span>
-				</a>
-				<div class="clearfix"></div>
+
+<div class="shout-container">
+	<div class="shout" id="me">
+		<div id="me-top">
+			<div class="shout-avatar col-lg-4 col-md-12 col-sm-12" id="me-avatar">
+				<img src="http://placehold.it/50x50">
 			</div>
-			<div class="profile-stats-container">
-				<div class="profile-stats">
-					<div>
-						<p>Tweets</p>
-						<h3>{tweets}</h3>
-					</div>
-					<div>
-						<p>Followers</p>
-						<h3>{Followers}</h3>
-					</div>
-					<div>
-						<p>Following</p>
-						<h3>{Following}</h3>
-					</div>
-				</div>
-			</div>
+			<a id="me-name" class="shout-names handle col-lg-8 col-md-12 col-sm-12" href="#">
+				<strong>Joe Dailey</strong>
+				<span>@@DaileyJoe</span>
+			</a>
+			<div class="clearfix"></div>
 		</div>
+		@part_profile_stats()
 	</div>
 </div>
+<div class="clearfix"></div>
