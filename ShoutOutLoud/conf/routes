@@ -5,6 +5,12 @@
 # Home page
 GET     /                           controllers.Application.index()
 
+# Login page
+GET     /login                      controllers.Login.login()
+POST    /login                      controllers.Login.authenticate()
+POST    /register                   controllers.Login.register()
+POST    /logout                     controllers.Login.logout()
+
 # Search routes
 GET     /user/:handle              controllers.Search.searchByProfile(handle: String)
 GET     /search/:keyword           controllers.Search.searchByKeyword(keyword: String)
