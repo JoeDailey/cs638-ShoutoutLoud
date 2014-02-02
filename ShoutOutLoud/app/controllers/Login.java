@@ -18,11 +18,12 @@ import play.mvc.Controller;
 import play.mvc.Result;
 
 import java.util.List;
+import java.util.Map;
 
 public class Login extends Controller {
 
-    public static LoginService loginService = new LoginServiceImpl();
-    public static SearchService searchService = new SearchServiceImpl();
+    private static LoginService loginService = new LoginServiceImpl();
+    private static SearchService searchService = new SearchServiceImpl();
 
     /**
      * Manages login screen for user.
@@ -68,12 +69,18 @@ public class Login extends Controller {
      */
     public static Result register(){
         DynamicForm dynamicForm = form().bindFromRequest();
+        
+        for(Map.Entry<String, String> entry : dynamicForm.data().entrySet()) {
+        	Logger.info("Key : " + entry.getKey() + ", Value : " + entry.getValue());
+        }
 
         String email = dynamicForm.get(Constants.USER_EMAIL);
         String fullName = dynamicForm.get(Constants.USER_FULL_NAME);
         String handle = dynamicForm.get(Constants.USER_HANDLE);
-        String location = dynamicForm.get(Constants.USER_LOCATION);
+        String location = "Madison";
         String password = dynamicForm.get(Constants.USER_PASSWORD);
+        
+        Logger.info("Handle : " + handle + ", Password : " + password);
 
         loginService.register(email, fullName, handle, location, password);
 
