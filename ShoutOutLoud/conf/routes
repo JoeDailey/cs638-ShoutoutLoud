@@ -10,12 +10,6 @@ POST    /login                      controllers.Login.login()
 POST    /register                   controllers.Login.register()
 GET     /logout                     controllers.Login.logout()
 
-# Login page
-GET     /login                      controllers.Login.login()
-POST    /login                      controllers.Login.authenticate()
-POST    /register                   controllers.Login.register()
-POST    /logout                     controllers.Login.logout()
-
 # Search routes
 GET     /user/:handle              controllers.Search.searchByProfile(handle: String)
 GET     /search/:keyword           controllers.Search.searchByKeyword(keyword: String, maxId: Long ?= 100000)
