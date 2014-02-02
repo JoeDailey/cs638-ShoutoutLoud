@@ -74,8 +74,7 @@ public class LoginServiceImpl implements LoginService {
             PreparedStatement preparedSql = null;
             try{
                 preparedSql = dbConn.prepareStatement(userAuthenticateSQL);
-                preparedSql.setString(1, handle);
-                preparedSql.setString(2, password);
+                preparedSql.setString(1, password);
                 ResultSet results = preparedSql.executeQuery();
 
                 if(results.next()){ 
@@ -88,10 +87,5 @@ public class LoginServiceImpl implements LoginService {
             DBUtils.cleanDBResources(dbConn, preparedSql);
             return isDBOpSuccess;
         }
-
-	@Override
-	public void logout(){
-		// session.clear(); (looks like this is done from the controller in play.mvc.Controller.Session)
-	}
 
 }

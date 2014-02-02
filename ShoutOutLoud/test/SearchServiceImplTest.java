@@ -25,7 +25,7 @@ public class SearchServiceImplTest {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
 				String handle = "test";
-				List<Tweet> tweets = searchService.searchTweetsByHandle(null, handle);
+				List<Tweet> tweets = searchService.searchTweetsByHandle(handle, null);
 				Logger.info("Found " + tweets.size() + " tweets for user " + handle);
 				for(Tweet t : tweets) {
 					Logger.info(t.toString());
@@ -39,7 +39,7 @@ public class SearchServiceImplTest {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
 				String keyword = "#test";
-				List<Tweet> tweets = searchService.searchTweetsByKeyword(keyword);
+				List<Tweet> tweets = searchService.searchTweetsByKeyword(keyword, null);
 				Logger.info("Found " + tweets.size() + " tweets for keyword " + keyword);
 				for(Tweet t : tweets) {
 					Logger.info(t.toString());

@@ -15,6 +15,4 @@ public interface LoginService {
 	public Profile register(String email, String full_name, String handle, String password, String location);
 
 	public boolean authenticate(String handle, String password);
-
-	public void logout();
 }

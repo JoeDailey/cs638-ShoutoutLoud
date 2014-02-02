@@ -12,18 +12,6 @@ public class LoginServiceImplTest {
 	private LoginService loginService = new LoginServiceImpl();
 
 	@Test
-	public void testLogin() {
-		running(fakeApplication(), new Runnable() {
-			public void run() {
-				String handle = "tHandle";
-				String password = "tPass";
-				boolean login = loginService.login(handle, password);
-				Logger.info("Login successful for handle: " + handle + " and password: " + password);
-			}
-		});
-	}
-
-	@Test
 	public void testRegister() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
@@ -39,19 +27,19 @@ public class LoginServiceImplTest {
 	}
 
 	@Test
-	public void testAuthenticate() {
+	public void testLogin() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
 				String handle = "tHandle";
 				String password = "tPass";
-				boolean authenticate = loginService.authenticate(handle, password);
-				Logger.info("Authentication valid for handle: " + handle + " and password: " + password);
+				boolean login = loginService.login(handle, password);
+				Logger.info("Login successful for handle: " + handle + " and password: " + password);
 			}
 		});
 	}
 
 	@Test
-	public void testLogout() {
+	public void testAuthenticate() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
 				String handle = "tHandle";

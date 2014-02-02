@@ -243,7 +243,7 @@ public class SearchServiceImpl implements SearchService {
 		String profileSQL = "SELECT p.id AS uid, p.handle, p.email, p.full_name, p.location, COUNT(t.tid) AS tweet_cnt, "
 				+ " COUNT(DISTINCT(f1.tgt_uid)) AS follower_cnt, COUNT(DISTINCT(f2.src_uid)) AS following_cnt"
 				+ " FROM profile p LEFT OUTER JOIN user_to_tweet t ON (p.id = t.uid) LEFT OUTER JOIN follower f1 ON (p.id = f1.src_uid)"
-				+ " LEFT OUTER JOIN following f2 ON (f2.tgt_uid = p.id) WHERE p.id = ? GROUP by p.id, p.handle, "
+				+ " LEFT OUTER JOIN following f2 ON (f2.tgt_uid = p.id) WHERE p.id = ? GROUP by p.id, p.handle, p.email,"
 				+ " p.full_name, p.location;";
 		PreparedStatement preparedSql = null;
 		try {
