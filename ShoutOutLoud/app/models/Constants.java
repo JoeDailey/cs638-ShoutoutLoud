@@ -33,8 +33,9 @@ public class Constants {
 	public static final String USER_FULL_NAME = "fullname";
 	public static final String USER_LOCATION = "location";
 	
-	public static final String LOGGED_USER = "logged_user";
-	public static final String LOGGED_PROFILE = "logged_profile";
+	public static final String USER_NUM_TWEETS = "num_tweets";
+	public static final String USER_NUM_FOLLOWERS = "num_followers";
+	public static final String USER_NUM_FOLLOWING = "num_following";
 	
 	// FORM CONSTANTS
 	public static final String TWEET_CONTENT = "content";

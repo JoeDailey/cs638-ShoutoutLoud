@@ -43,7 +43,7 @@ public class LoginServiceImpl implements LoginService {
 
         // Step 2 - Insert profile into profile table
         long profileId = searchService.searchMaxUserId() + 1;
-        String profileInsertSQL = "INSERT INTO " + Constants.USER_TBL + "(id, handle, full_name, email, password, location) VALUES (?, ?, ?, ?, ?, ?)";
+        String profileInsertSQL = "INSERT INTO " + Constants.USER_TBL + "(id, handle, full_name, location, password, email) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedSQL = null;
         try {
             preparedSQL = dbConn.prepareStatement(profileInsertSQL);
@@ -77,6 +77,7 @@ public class LoginServiceImpl implements LoginService {
                 preparedSql.setString(1, password);
                 ResultSet results = preparedSql.executeQuery();
 
+                Logger.info("Checking SQL : " + userAuthenticateSQL + " for password " + password);
                 if(results.next()){ 
                     isDBOpSuccess = true; // results set contains matching handle and password
                 }
@@ -84,6 +85,7 @@ public class LoginServiceImpl implements LoginService {
                 Logger.error("Failed to authenticate handle: " + handle + " with password: " + password);
                 e.printStackTrace();
             }
+            
             DBUtils.cleanDBResources(dbConn, preparedSql);
             return isDBOpSuccess;
         }
