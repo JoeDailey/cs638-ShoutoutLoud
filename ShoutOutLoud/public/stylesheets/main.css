@@ -17,14 +17,14 @@ a:hover{
 }
 /*landing-auth*/
 
-		@media (max-width: 768px) {
-		 	.exciting{
-		    	font-size: 3em!important;
-			}
-			#welcome-container span{
-				text-align: center!important;
-			}
-		}
+@media (max-width: 768px) {
+ 	.exciting{
+    	font-size: 3em!important;
+	}
+	#welcome-container span{
+		text-align: center!important;
+	}
+}
 #vert-center{
 	height: 100%;
 	width: 100%;
@@ -49,7 +49,7 @@ a:hover{
 .shout{
 	width: 100%;
 	min-height:50px;
-	background-color: #efefef;
+	background-color: #ffffff;
 	padding: 10px;
 	border-bottom: 2px solid #e1e1e1;
 }
@@ -105,4 +105,52 @@ a:hover{
 }
 .shout:hover .shout-options{
 	display: block;
+}
+
+/*info boxes*/
+#me{
+}
+#me-top{
+	position: relative;
+	margin-bottom: 5px;
+}
+#me-avatar{
+	height: 60px;
+	width: 60px;
+	display: inline-block;
+	float: left;
+	margin-right: 10px;
+}
+#me-avatar img{
+	height: 100%;
+	width: 100%;
+}
+#me-name{
+	position: absolute;
+	bottom: 0px;
+	font-size: 2em;
+}
+#me-middle{
+	border:1px solid #e1e1e1;
+}
+#me-tweets{
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	border-right: 1px solid #e1e1e1;
+}
+#me-followers{
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	border-right: 1px solid #e1e1e1;
+}
+#me-following{
+	float: left;
+	margin: 5px;
+	padding: 5px;
+	border-right: 1px solid transparent;
+}
+#trends{
+	margin-top: 10px;
 }
