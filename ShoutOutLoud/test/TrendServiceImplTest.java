@@ -3,6 +3,7 @@ import static play.test.Helpers.running;
 
 import java.util.List;
 
+import models.Trend;
 import models.service.TrendService;
 import models.service.TrendServiceImpl;
 
@@ -18,7 +19,7 @@ public class TrendServiceImplTest {
 	public void testGetTrends() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				List<String> trends = trendService.getTrends();
+				List<Trend> trends = trendService.getTrends();
 				Logger.info("Found " + trends.size() + " trends .." );
 			}
 		});

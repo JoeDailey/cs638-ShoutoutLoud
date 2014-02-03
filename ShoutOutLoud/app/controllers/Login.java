@@ -1,9 +1,6 @@
 package controllers;
 
 import static play.data.Form.form;
-
-import java.util.Map;
-
 import models.Constants;
 import models.Profile;
 import models.service.LoginService;
@@ -70,7 +67,7 @@ public class Login extends Controller {
         
         Logger.info("Handle : " + handle + ", Password : " + password);
 
-        Profile profile = loginService.register(email, fullName, handle, location, password);
+        Profile profile = loginService.register(email, fullName, handle, password, location);
         setupSessionVars(profile);
 
         return redirect("/feed");
@@ -89,7 +86,8 @@ public class Login extends Controller {
     
     private static void setupSessionVars(Profile profile)
     {
-        session(Constants.USER_EMAIL, profile.getEmail());
+        session(Constants.USER_ID, Long.toString(profile.getId()));
+    	session(Constants.USER_EMAIL, profile.getEmail());
         session(Constants.USER_HANDLE, profile.getHandle());
         session(Constants.USER_FULL_NAME, profile.getFullName());
         session(Constants.USER_LOCATION, profile.getLocation());

@@ -27,6 +27,7 @@ public class Constants {
 	public static String TREND_TO_TWEET_TBL = "trend_to_tweet";
 	
 	// SESSION CONSTANTS
+	public static final String USER_ID = "uid";
 	public static final String USER_HANDLE = "handle";
 	public static final String USER_PASSWORD = "password";
 	public static final String USER_EMAIL = "email";
