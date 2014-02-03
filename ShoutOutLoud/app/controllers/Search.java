@@ -46,12 +46,15 @@ public class Search extends Controller {
         	if(lastId==100000){
         		Profile user = searchService.searchProfileByHandle(handle);
 				List<Tweet> tweets = searchService.searchTweetsByHandle(handle, 1000000000L);
+				System.out.println(tweets);
 				String following = searchService.searchForDataForFollowings(me.getHandle());
+				List<Trend> trends = trendService.getTrends();
 				
-				return ok(profile.render(user, me, tweets, following));
+				return ok(profile.render(user, me, trends, tweets, following));
 			}else{
 				String json = "[";
 				List<Tweet> tweets = searchService.searchTweetsByHandle(handle, lastId);
+				System.out.println(tweets);
 				for(int i = 0; i < tweets.size(); i++){
 					json += "{\"content\":\""+tweets.get(i).getContent()+"\", \"id\":\""+tweets.get(i).getId()+"\", \"timestamp\":\""+tweets.get(i).getTimestamp()+"\", \"user\":{ \"handle\":\""+tweets.get(i).getTweetCreator().getHandle()+"\", \"fullName\":\""+tweets.get(i).getTweetCreator().getFullName()+"\", \"id\":\""+tweets.get(i).getTweetCreator().getId()+"\" }}";
 					if(i!=tweets.size()-1)

@@ -133,7 +133,7 @@ body{
 	display: none;
 }
 .shout:hover .shout-options{
-	display: block;
+	/*display: block;*/
 }
 .shout-container:hover{
 	/*padding: 0px;*/
@@ -251,6 +251,12 @@ body{
 	}
 	.shout-container{
 		padding: 0px;
+	}
+	.shout-options{
+		/*display: block;*/
+	}
+	#trends{
+		display: none;
 	}
 }
 @media (min-width: 992px) {

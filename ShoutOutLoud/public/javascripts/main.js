@@ -47,7 +47,7 @@ $(document).ready(function(){
 							}
 						});
 					});
-					for (var i = user.tweets.length - 1; i >= 0; i--) {
+					for (var i = 0; i < user.tweets.length ; i++) {
 					// for(var i = 0; i < user.tweets.length; i++) {
 						$("#popup-mid").append(newShout(user, user.tweets[i]));
 					};
