@@ -94,8 +94,10 @@ public class TweetServiceImpl implements TweetService {
 			while(results.next()) {
 				long tweetId = results.getLong("tid");
 				String content = results.getString("content");
-				Date timestamp = results.getDate("create_time");
+				Date timestamp = results.getTimestamp("create_time");
 				long subUid = results.getLong("uid");
+				
+				Logger.info("Timestamp fetched : " + timestamp.toString());
 				
 				Tweet tweet = new Tweet(tweetId, content, timestamp);
 				Profile profile = searchService.searchProfileByUid(subUid);
