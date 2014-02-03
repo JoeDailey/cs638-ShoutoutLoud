@@ -1,50 +1,9 @@
-<style type="text/css">
-	.compose{
-		width: 100%;
-		background-color: #f5f5f5;
-		border: 1px solid #e4e4e4;
-		box-shadow: inset 0 2px 4px 0 rgba(0,0,0,.04);
-		padding: 5px;
-		font-size: 1.5em;
-		margin-bottom:7px; 
-	}
-	.compose-control{
-		float: right;
-	}
-	.unclicked{
-		color: #bfbfbf;
-	}
-	[contenteditable][placeholder]:empty:before {
-		content: attr(placeholder);
-		color: #bababa;
-	}
-</style>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('.compose').click(function(){
-			var box = $(this);
-			if(box.attr("clicked")=="false"){
-				box.removeClass("unclicked");
-				box.attr("clicked", "true");
-				box.text("");
-				box.html("");
-				console.log("cleared");
-			}
-		});
-		$('.compose').bind("DOMSubtreeModified",function(){
-			var numChars = $(this).html().length;
-			var chars = $($($($(this).parent()).children('.compose-control')).children('.characters-left'));
-			chars.html(140-$(this).html().length);
-			chars.css("color", "rgb("+Math.floor(200*(numChars/140))+","+Math.floor(200*(1-numChars/140))+",0)");
-		});
-	});
-</script>
 <div class="shout-container" id="desktop-control">
 	<div class="shout">
 		<div class="compose unclicked" placeholder="Compose Shout..." clicked="false" contenteditable></div>
 		<div class="compose-control">
 			<span class="characters-left" style="color:rgb(0,200,0);">140</span>
-			<button class="btn btn-default" type="submit">Shout!</button>
+			<button class="btn btn-default compose-send" type="submit">Shout!</button>
 		</div>
 		<div class="clearfix"></div>
 	</div>

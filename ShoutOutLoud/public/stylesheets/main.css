@@ -46,9 +46,18 @@ a:hover{
 #panel-left{
 	float:left;
 }
-#panel-right{
+@media (max-width: 992px) {
+	#panel-right{
+		padding-bottom: 2em;
+	}
+	.navbar{
+		margin-bottom: 0px!important;
+	}
+}
+#all-shouts{
+	width: 100%;
+	height: 100%;
 	overflow-y: scroll;
-	height: 90%;
 }
 #element::-webkit-scrollbar {
 	display: none; 
@@ -125,6 +134,9 @@ body{
 }
 .shout:hover .shout-options{
 	display: block;
+}
+.shout-container:hover{
+	/*padding: 0px;*/
 }
 
 /*info boxes*/
@@ -214,6 +226,25 @@ body{
 		display: none;
 	}
 }
+.compose{
+	width: 100%;
+	background-color: #f5f5f5;
+	border: 1px solid #e4e4e4;
+	box-shadow: inset 0 2px 4px 0 rgba(0,0,0,.04);
+	padding: 5px;
+	font-size: 1.5em;
+	margin-bottom:7px; 
+}
+.compose-control{
+	float: right;
+}
+.unclicked{
+	color: #bfbfbf;
+}
+[contenteditable][placeholder]:empty:before {
+	content: attr(placeholder);
+	color: #bababa;
+}
 @media (max-width: 992px) {
 	#me{
 		display: none;
@@ -259,4 +290,7 @@ body{
 .super-sub-exciting{
     font-size: 2em;
     text-shadow: 0.1em 0.1em 0px rgba(0,0,0, 0.5)
+}
+.follow-button{
+	margin-left: 5px;
 }

@@ -35,6 +35,11 @@ public interface SearchService {
 	 * @return
 	 */
 	public List<Profile> searchFollowers(String handle);
+	
+	/**
+	*
+	*/
+	public String searchForDataForFollowings(String handle);
 
 	/**
 	 * Get the list of users a user is following.

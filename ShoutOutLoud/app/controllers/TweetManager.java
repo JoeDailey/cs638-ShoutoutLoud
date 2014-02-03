@@ -60,18 +60,32 @@ public class TweetManager extends Controller {
 	{
 		if(session().get(Constants.USER_HANDLE) == null)
             return redirect("/");
+        else{
+			Profile user = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
+										session().get(Constants.USER_FULL_NAME),
+										session().get(Constants.USER_EMAIL),
+										session().get(Constants.USER_HANDLE),
+										session().get(Constants.USER_LOCATION));
+        	if(maxId==100000){
 
-		Profile user = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
-									session().get(Constants.USER_FULL_NAME),
-									session().get(Constants.USER_EMAIL),
-									session().get(Constants.USER_HANDLE),
-									session().get(Constants.USER_LOCATION));
-
-		List<Trend> trends = trendService.getTrends();
-		
-		String handle = session().get(Constants.USER_HANDLE);
-		List<Tweet> tweets = tweetService.getFeed(handle, maxId);
-		
-		return ok(home.render(tweets, trends, user));
+				List<Trend> trends = trendService.getTrends();
+				String handle = session().get(Constants.USER_HANDLE);
+				String following = searchService.searchForDataForFollowings(user.getHandle());
+			
+				System.out.println(following);
+				List<Tweet> tweets = tweetService.getFeed(handle, maxId);
+				
+				return ok(home.render(tweets, trends, user, following));
+			}else{
+				String json = "[";
+				List<Tweet> tweets = tweetService.getFeed(user.getHandle(), maxId);
+				for(int i = 0; i < tweets.size(); i++){
+					json += "{\"content\":\""+tweets.get(i).getContent()+"\", \"id\":\""+tweets.get(i).getId()+"\", \"timestamp\":\""+tweets.get(i).getTimestamp()+"\", \"user\":{ \"handle\":\""+tweets.get(i).getTweetCreator().getHandle()+"\", \"fullName\":\""+tweets.get(i).getTweetCreator().getFullName()+"\", \"id\":\""+tweets.get(i).getTweetCreator().getId()+"\" }}";
+					if(i!=tweets.size()-1)
+				 		json+=",";
+				}
+				return ok(json+"]");
+			}
+		}
 	}	
 }

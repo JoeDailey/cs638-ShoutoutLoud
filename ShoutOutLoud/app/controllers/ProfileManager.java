@@ -18,6 +18,7 @@ public class ProfileManager extends Controller {
 	
 	public static Result follow(String targetHandle)
 	{
+		System.out.println("target->"+targetHandle);
 		String sourceHandle = session().get(Constants.USER_HANDLE);
 		profileService.follow(sourceHandle, targetHandle);
 		return ok("Follow relationship established ..");

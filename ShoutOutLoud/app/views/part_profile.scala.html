@@ -1,12 +1,32 @@
-@(user: models.Profile)
+@(user: models.Profile, me: String, tweets: List[models.Tweet])
 <div class="shout-container">
 	<div class="shout">
 		<div id="them">
 			<img src="http://placehold.it/100x100">
 			<h1>@user.getFullName()</h1>
-			<h2>@user.getHandle()</h2>
+
+			<h2>@@@user.getHandle()<button class="btn btn-default follow-button" data-handle="@user.getHandle()">follow</button></h2>
+			<script type="text/javascript">
+				if("@user.getHandle()"=="@me"){
+					$(".follow-button").remove();
+				}else{
+					if(followingList.indexOf('@user.getHandle()')>-1){
+						$('.follow-button').toggleClass("btn-default");
+						$('.follow-button').toggleClass("btn-success");
+						$('.follow-button').text("following");
+					}
+				}
+			</script>
 		</div>
 		@part_profile_stats(user.getNumTweets, user.getNumFollowers, user.getNumFollowing)
 	</div>
 </div>
-@part_no_shout()
+<div id="all-shouts" src="user/@user.getHandle()" tapped="false">
+@if(tweets.length > 0){
+	@for(t <- tweets){
+		@part_shout(t)
+	}
+}else{
+	@part_no_shout()
+}
+</div>

@@ -1,21 +1,25 @@
-@(user: models.Profile, me: models.Profile)
+@(user: models.Profile, me: models.Profile, tweets: List[models.Tweet], following: String)
 
 @part_header(me.getHandle())
 
-<style type="text/css">
-
-</style>
+<script type="text/javascript">
+	var followingList = @Html(following);
+	$(document).ready(function(){
+		$('.compose').html("@@@user.getHandle()&nbsp");
+	});
+</script>
 <div>
 	<div class="row col-md-12">
 			@if(!me.getHandle().equals(user.getHandle())){
 				<div id="panel-left" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
 					@part_me(me)
+					@part_compose()
 				</div>
-				<div id="panel-right" class="col-lg-8 col-md-9 col-sm-9 col-xs-12">
+				<div id="panel-right" class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
 			}else{
 				<div id="panel-right" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			}
-			@part_profile(user);
+			@part_profile(user, me.getHandle(), tweets);
 		</div>
 	</div>
 </div>

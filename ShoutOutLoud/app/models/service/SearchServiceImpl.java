@@ -126,6 +126,26 @@ public class SearchServiceImpl implements SearchService {
 		DBUtils.cleanDBResources(dbConn, preparedSql);
 		return followers;
 	}
+	public String searchForDataForFollowings(String handle){
+		List<Profile> followings = searchFollowing(handle);
+		String json = "[";
+
+		// for(int i = 0; i < followings.size(); i++){
+		// 	json+="{\"id\":\""+followings.get(i).getId()+"\", \"fullName\":\""+followings.get(i).getFullName()+"\", \"handle\":\""+followings.get(i).getHandle()+"\"}";
+		// 	if(i!=followings.size()-1)
+		// 		json+=",";
+		// }
+
+		for(int i = 0; i < followings.size(); i++){
+			json += "\""+followings.get(i).getHandle()+"\"";
+			if(i!=followings.size()-1)
+		 		json+=",";
+		}
+
+		json+="]";
+		System.out.println(json);
+		return json;
+	}
 
 	@Override
 	public List<Profile> searchFollowing(String handle) {

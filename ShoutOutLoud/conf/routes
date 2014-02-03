@@ -11,19 +11,19 @@ POST    /register                   controllers.Login.register()
 GET     /logout                     controllers.Login.logout()
 
 # Search routes
-GET     /user/:handle              controllers.Search.searchByProfile(handle: String)
+GET     /user/:handle              	controllers.Search.searchByProfile(handle: String, maxId: Long ?= 100000)
 GET		/user/:handle/json			controllers.Search.searchForDataByProfile(handle: String)
-GET     /search/:keyword           controllers.Search.searchByKeyword(keyword: String, maxId: Long ?= 100000)
+GET     /search/:keyword 			controllers.Search.searchByKeyword(keyword: String, maxId: Long ?= 100000)
 
 # Tweet manager routes
-POST    /compose                controllers.TweetManager.compose()
-GET     /feed                   controllers.TweetManager.feed(maxId: Long ?= 100000)
+POST    /compose					controllers.TweetManager.compose()
+GET     /feed						controllers.TweetManager.feed(maxId: Long ?= 100000)
 
 #Trends
 GET     /trends                     controllers.TrendManager.trends()
 
 # Profile
-GET     /follow                     controllers.ProfileManager.follow(targetHandle: String)
+GET     /follow/:targetHandle		controllers.ProfileManager.follow(targetHandle: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,7 +1,9 @@
-@(tweets: List[models.Tweet], trends: List[models.Trend], user: models.Profile)
+@(tweets: List[models.Tweet], trends: List[models.Trend], user: models.Profile, following: String)
 
 @part_header(user.getHandle())
-
+<script type="text/javascript">
+	var followingList = @Html(following);
+</script>
 <div class="content">
 	<div class="row col-md-12">
 		<div id="panel-left" class="col-lg-4 col-md-3 col-sm-12 col-xs-12">
@@ -9,13 +11,15 @@
 			@part_compose()
 		</div>
 		<div id="panel-right" class="col-lg-8 col-md-9 col-sm-12 col-xs-12">
-			@if(tweets.length > 0){
-				@for(t <- tweets){
-					@part_shout(t)
+			<div id="all-shouts" src="feed" tapped="false">
+				@if(tweets.length > 0){
+					@for(t <- tweets){
+						@part_shout(t)
+					}
+				}else{
+					@part_no_shout()
 				}
-			}else{
-				@part_no_shout()
-			}
+			</div>
 		</div>
 	</div>
 </div>

@@ -9,16 +9,19 @@
 		</div>
 		<div class="shout-data">
 			<div class="shout-info">
-				<a class="shout-names handle" handle="@tweet.getTweetCreator().getHandle()" href="#">
+				<a class="shout-names handle" data-handle="@tweet.getTweetCreator().getHandle()" href="#">
 					<strong>@tweet.getTweetCreator().getFullName()</strong>
 					<span>@@ @tweet.getTweetCreator().getHandle()</span>
 				</a>
-				<a class="shout-time" href="/shout/shoutid">
-					5h
+				<a class="shout-time" href="#" tweet-timestamp-id="@tweet.getId()">
 				</a>
+				<script type="text/javascript">
+					var time = moment("@tweet.getTimestamp()").fromNow();
+					$("a[tweet-timestamp-id='@tweet.getId()']").html(time);
+				</script>
 				<div class="clearfix"></div>
 			</div>
-			<div class="shout-content" tweet-id="@tweet.getId()" onload="load(this)">
+			<div class="shout-content" tweet-id="@tweet.getId()">
 				
 			</div>
 			<script type="text/javascript">
@@ -31,6 +34,7 @@
 					full += html[i] + " ";
 				};
 				$("div[tweet-id='@tweet.getId()']").html(full);
+				$("#all-shouts").attr("maxId", @tweet.getId())
 			</script>
 		</div>
 		<div class="clearfix"></div>
