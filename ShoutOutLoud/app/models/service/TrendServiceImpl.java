@@ -20,7 +20,7 @@ public class TrendServiceImpl implements TrendService {
 		Connection dbConn = DBUtils.getDBConnection();
 		List<Trend> topNTrends = Lists.newArrayList();
 		
-		String sql = "SELECT keyword, count FROM " + Constants.TREND_TBL + " ORDER BY count LIMIT ?";
+		String sql = "SELECT keyword, count FROM " + Constants.TREND_TBL + " ORDER BY count DESC LIMIT ?";
 		PreparedStatement preparedSql = null;
 		try {
 			preparedSql = dbConn.prepareStatement(sql);
