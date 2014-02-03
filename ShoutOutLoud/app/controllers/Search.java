@@ -31,7 +31,7 @@ public class Search extends Controller {
 	public static Result searchByProfile(String handle)
 	{
 		Profile user = searchService.searchProfileByHandle(handle);
-		Profile me = new Profile(	0,
+		Profile me = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
 									session().get(Constants.USER_FULL_NAME),
 									session().get(Constants.USER_EMAIL),
 									session().get(Constants.USER_HANDLE),
