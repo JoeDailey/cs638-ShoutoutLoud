@@ -6,8 +6,14 @@ import java.util.List;
 
 import models.Constants;
 import models.Tweet;
+import models.Trend;
+import models.Profile;
+import models.service.SearchService;
+import models.service.SearchServiceImpl;
 import models.service.TweetService;
 import models.service.TweetServiceImpl;
+import models.service.TrendService;
+import models.service.TrendServiceImpl;
 import play.Logger;
 import play.data.DynamicForm;
 import play.mvc.Controller;
@@ -24,6 +30,8 @@ import views.html.home;
 public class TweetManager extends Controller {
 
 	private static TweetService tweetService = new TweetServiceImpl();
+	private static SearchService searchService = new SearchServiceImpl();
+	private static TrendService trendService = new TrendServiceImpl();
 	
 	/**
 	 * Manages the creation of a single tweet.
@@ -50,9 +58,17 @@ public class TweetManager extends Controller {
 	 */
 	public static Result feed(Long maxId)
 	{
+		Profile user = new Profile(	0,
+									session().get(Constants.USER_FULL_NAME),
+									session().get(Constants.USER_EMAIL),
+									session().get(Constants.USER_HANDLE),
+									session().get(Constants.USER_LOCATION));
+
+		List<Trend> trends = trendService.getTrends();
+		
 		String handle = session().get(Constants.USER_HANDLE);
 		List<Tweet> tweets = tweetService.getFeed(handle, maxId);
 		
-		return ok(home.render(tweets));		
+		return ok(home.render(tweets, trends, user));
 	}	
 }

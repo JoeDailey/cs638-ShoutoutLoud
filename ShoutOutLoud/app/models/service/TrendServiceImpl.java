@@ -16,9 +16,9 @@ import com.google.common.collect.Lists;
 public class TrendServiceImpl implements TrendService {
 
 	@Override
-	public List<String> getTrends() {
+	public List<Trend> getTrends() {
 		Connection dbConn = DBUtils.getDBConnection();
-		List<String> topNTrends = Lists.newArrayList();
+		List<Trend> topNTrends = Lists.newArrayList();
 		
 		String sql = "SELECT keyword FROM " + Constants.TREND_TBL + " ORDER BY count LIMIT ?";
 		PreparedStatement preparedSql = null;
@@ -27,7 +27,7 @@ public class TrendServiceImpl implements TrendService {
 			preparedSql.setInt(1, Constants.NUM_TRENDS_TO_SHOW);
 			ResultSet results = preparedSql.executeQuery();
 			while(results.next()) {
-				topNTrends.add(results.getString("keyword"));
+				topNTrends.add(new Trend(results.getString("keyword"), Integer.parseInt(results.getString("count"))));
 			}
 		} catch (SQLException e) {
 			Logger.error("Failed to fetch top N trends ..");

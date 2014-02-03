@@ -1,5 +1,19 @@
 @(tweet: models.Tweet)
 
+<script type="text/javascript" src="../../public/javascripts/jquery-1.9.0.min.js"></script>
+				<script type="text/javascript">
+					$(document).ready(function(){
+						var html = @tweet.getContent()
+						html = html.split(' ');
+						for (var i = 0; i < html.length; i++) {
+							if(html[i].indexOf('#') == 0)
+								html[i] = '<a href="/search/'+html[i].substring(1)+'">'+html[i]+'</a>';
+							html[i] += " ";
+						};
+						$('.shout-content').html(html);
+					})
+				</script>
+
 <div class="shout-container">
 	<div class="shout">
 		<div class="shout-avatar">
@@ -8,8 +22,8 @@
 		<div class="shout-data">
 			<div class="shout-info">
 				<a class="shout-names handle" href="#">
-					<strong>Joe Dailey</strong>
-					<span>@@DaileyJoe</span>
+					<strong>tweet.fullname</strong>
+					<span>@@ tweet.handle</span>
 				</a>
 				<a class="shout-time" href="/shout/shoutid">
 					5h
@@ -17,7 +31,6 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="shout-content">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut pretium tempus ornare. Quisque vel mi nibh. Phasellus molestie, sapien sit amet pharetra interdum, lacus est porttitor sapien, sed gravida dui orci feugiat quam. Nam consequat orci vel ipsum sodales tempor. Ut laoreet a orci non ullamcorper. Curabitur rhoncus eros quis odio sollicitudin, eu pellentesque nulla sodales. Ut non augue justo. Phasellus faucibus ornare quam. Duis tincidunt varius luctus. Cras fermentum ante eget mauris cursus, nec rutrum nisi tristique. Etiam a tristique orci, <a href="#" >ac tincidunt nunc. </a>Etiam id nunc non justo lacinia pellentesque nec a sem. Quisque ut vestibulum metus, a aliquet arcu. Aenean dignissim lorem in sem dictum, at vulputate nisi euismod. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In scelerisque dui a ipsum pretium 
 			</div>
 		</div>
 		<div class="clearfix"></div>
