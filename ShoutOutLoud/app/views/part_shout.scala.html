@@ -30,7 +30,7 @@
 				var full = "";
 				for (var i = 0; i < html.length; i++) {
 					if(html[i].indexOf('#') == 0)
-						html[i] = '<a href="/search/'+html[i].substring(1)+'">'+html[i]+'</a>';
+						html[i] = '<a href="/search/'+html[i]+'">'+html[i]+'</a>';
 					if(html[i].indexOf("@@") == 0)
 						html[i] = '<a class="shout-names handle" data-handle="'+html[i].substring(1)+'" href="#">@@'+ html[i]+'</a>';
 					full += html[i] + " ";
