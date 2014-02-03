@@ -1,7 +1,9 @@
 package models;
 
 import java.util.Date;
-public class Tweet{
+
+import com.google.common.base.Objects;
+public class Tweet implements Comparable<Tweet> {
 
 	private long id;
 	private String content;
@@ -61,4 +63,27 @@ public class Tweet{
 	public void setTweetCreator(Profile tweetCreator) {
 		this.tweetCreator = tweetCreator;
 	}
+
+	@Override
+	public int compareTo(Tweet that) {
+		return (int)(this.getId() - that.getId());
+	}
+	
+	@Override
+	public boolean equals(Object obj)
+	{
+		if (obj instanceof Tweet) {
+			Tweet that = (Tweet)obj;
+			return Objects.equal(this.id, that.id) &&
+					Objects.equal(this.content, that.content);
+		}
+
+		return false;		
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return Objects.hashCode(this.id, this.content);
+	}	
 }

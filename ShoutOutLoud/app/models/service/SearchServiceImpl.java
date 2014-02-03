@@ -110,7 +110,7 @@ public class SearchServiceImpl implements SearchService {
 			ResultSet results = preparedSql.executeQuery();
 			
 			while(results.next()) {
-				followerIds.add(results.getLong("tgt_uid"));
+				followerIds.add(results.getLong("src_uid"));
 			}
 		} catch (SQLException e) {
 			Logger.error("Failed to find followers for handle : " + handle);
@@ -132,7 +132,7 @@ public class SearchServiceImpl implements SearchService {
 		Connection dbConn = DBUtils.getDBConnection();
 
 		long uid = searchUidForTwitterHandle(handle);
-		String sql = "SELECT src_uid FROM " + Constants.FOLLOWING_TBL + " WHERE tgt_uid = ?";
+		String sql = "SELECT tgt_uid FROM " + Constants.FOLLOWING_TBL + " WHERE src_uid = ?";
 		PreparedStatement preparedSql = null;
 		List<Long> followingIds = Lists.newArrayList();
 		try {
@@ -141,7 +141,7 @@ public class SearchServiceImpl implements SearchService {
 			ResultSet results = preparedSql.executeQuery();
 			
 			while(results.next()) {
-				followingIds.add(results.getLong("src_uid"));
+				followingIds.add(results.getLong("tgt_uid"));
 			}
 		} catch (SQLException e) {
 			Logger.error("Failed to find following for handle : " + handle);
@@ -241,9 +241,9 @@ public class SearchServiceImpl implements SearchService {
 		Connection dbConn = DBUtils.getDBConnection();
 
 		String profileSQL = "SELECT p.id AS uid, p.handle, p.email, p.full_name, p.location, COUNT(t.tid) AS tweet_cnt, "
-				+ " COUNT(DISTINCT(f1.tgt_uid)) AS follower_cnt, COUNT(DISTINCT(f2.src_uid)) AS following_cnt"
+				+ " COUNT(DISTINCT(f1.tgt_uid)) AS follower_cnt, COUNT(DISTINCT(f2.tgt_uid)) AS following_cnt"
 				+ " FROM profile p LEFT OUTER JOIN user_to_tweet t ON (p.id = t.uid) LEFT OUTER JOIN follower f1 ON (p.id = f1.src_uid)"
-				+ " LEFT OUTER JOIN following f2 ON (f2.tgt_uid = p.id) WHERE p.id = ? GROUP by p.id, p.handle, p.email,"
+				+ " LEFT OUTER JOIN following f2 ON (f2.src_uid = p.id) WHERE p.id = ? GROUP by p.id, p.handle, p.email,"
 				+ " p.full_name, p.location;";
 		PreparedStatement preparedSql = null;
 		try {

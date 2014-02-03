@@ -1,3 +1,5 @@
+import java.util.UUID;
+
 import org.junit.Test;
 
 import play.Logger;
@@ -17,7 +19,7 @@ public class LoginServiceImplTest {
 			public void run() {
 				String email = "tEmail";
 				String fullName = "tName";
-				String handle = "tHandle";
+				String handle = UUID.randomUUID().toString();;
 				String password = "tPass";
                 String location = "tLocation";
 				Profile profile = loginService.register(email, fullName, handle, password, location);

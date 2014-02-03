@@ -29,4 +29,14 @@ public class TweetServiceImplTest {
 		});
 	}
 	
+	@Test
+	public void testGetFeed() {
+		running(fakeApplication(), new Runnable() {
+			public void run() {
+				List<Tweet> tweets = tweetService.getFeed("test", null);
+				Logger.info("Found " + tweets.size() + " tweets ..");
+			}
+		});
+	}	
+	
 }

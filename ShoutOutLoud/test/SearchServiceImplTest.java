@@ -103,7 +103,7 @@ public class SearchServiceImplTest {
 				long uid = searchService.searchUidForTwitterHandle("test");
 				Logger.info("Uid found " + uid);
 				
-				assertThat(uid).isEqualTo(1);
+				assertThat(uid).isEqualTo(5);
 			}
 		});
 	}
