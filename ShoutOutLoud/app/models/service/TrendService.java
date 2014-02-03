@@ -15,7 +15,7 @@ public interface TrendService {
 	 * Generates trends from the tweet data.
 	 * @return
 	 */
-	public List<String> getTrends();
+	public List<Trend> getTrends();
 	
 	/**
 	 * Inserts the top trends in database after a batch job run.

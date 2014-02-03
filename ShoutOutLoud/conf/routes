@@ -12,6 +12,7 @@ GET     /logout                     controllers.Login.logout()
 
 # Search routes
 GET     /user/:handle              controllers.Search.searchByProfile(handle: String)
+GET		/user/:handle/json			controllers.Search.searchForDataByProfile(handle: String)
 GET     /search/:keyword           controllers.Search.searchByKeyword(keyword: String, maxId: Long ?= 100000)
 
 # Tweet manager routes
