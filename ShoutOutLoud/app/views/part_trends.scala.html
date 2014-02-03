@@ -4,7 +4,7 @@
 
 		@if(trends.length > 0){
 			@for(t <- trends){
-							<a href="/search/@t.getKeyword()"><h4>@t.getKeyword()</h4></a>
+							<a href="/search/@t.getKeywordWoHashTag()"><h4>@t.getKeyword()</h4></a>
 			}
 		}
 				</div>

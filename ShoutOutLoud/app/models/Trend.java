@@ -39,6 +39,11 @@ public class Trend implements Comparable<Trend> {
 	public String getKeyword() {
 		return keyword;
 	}
+	
+	public String getKeywordWoHashTag()
+	{
+		return keyword.replace("#", "");
+	}
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
