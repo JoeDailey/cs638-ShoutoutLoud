@@ -1,18 +1,6 @@
 @(tweet: models.Tweet)
 
-<script type="text/javascript" src="../../public/javascripts/jquery-1.9.0.min.js"></script>
-				<script type="text/javascript">
-					$(document).ready(function(){
-						var html = @tweet.getContent()
-						html = html.split(' ');
-						for (var i = 0; i < html.length; i++) {
-							if(html[i].indexOf('#') == 0)
-								html[i] = '<a href="/search/'+html[i].substring(1)+'">'+html[i]+'</a>';
-							html[i] += " ";
-						};
-						$('.shout-content').html(html);
-					})
-				</script>
+
 
 <div class="shout-container">
 	<div class="shout">
@@ -21,17 +9,29 @@
 		</div>
 		<div class="shout-data">
 			<div class="shout-info">
-				<a class="shout-names handle" href="#">
-					<strong>tweet.fullname</strong>
-					<span>@@ tweet.handle</span>
+				<a class="shout-names handle" handle="@tweet.getTweetCreator().getHandle()" href="#">
+					<strong>@tweet.getTweetCreator().getFullName()</strong>
+					<span>@@ @tweet.getTweetCreator().getHandle()</span>
 				</a>
 				<a class="shout-time" href="/shout/shoutid">
 					5h
 				</a>
 				<div class="clearfix"></div>
 			</div>
-			<div class="shout-content">
+			<div class="shout-content" tweet-id="@tweet.getId()" onload="load(this)">
+				
 			</div>
+			<script type="text/javascript">
+				var html = "@tweet.getContent()"+" "+"";
+				html = html.split(' ');
+				var full = "";
+				for (var i = 0; i < html.length; i++) {
+					if(html[i].indexOf('#') == 0)
+						html[i] = '<a href="/search/'+html[i].substring(1)+'">'+html[i]+'</a>';
+					full += html[i] + " ";
+				};
+				$("div[tweet-id='@tweet.getId()']").html(full);
+			</script>
 		</div>
 		<div class="clearfix"></div>
 		<div class="shout-options">

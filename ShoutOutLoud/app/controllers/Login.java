@@ -24,7 +24,10 @@ public class Login extends Controller {
      * @return
      */
     public static Result index(){
-        return ok(landing.render());
+        if(session().get(Constants.USER_HANDLE) != null)
+            return redirect("/feed");
+        else
+            return ok(landing.render());
     }
 
     /**

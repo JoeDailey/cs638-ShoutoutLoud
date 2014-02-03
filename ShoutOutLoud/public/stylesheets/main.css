@@ -227,3 +227,36 @@ body{
 		display: none;
 	}
 }
+/*landing*/
+#landing-container{
+    margin: 0px;
+    padding: 0px;
+}
+#inner-center{
+    display:table-cell;
+    vertical-align: middle;
+}
+.well{
+    border-width:0px;
+    background-color: rgba(0,0,0,0.5);
+}
+#welcome-container span{
+    text-align: right;
+    float:right;
+    color: white;
+    /*text-shadow: 0.05em 0.05em 0px rgba(0,0,0, 0.5),  0em 0em 2px rgba(0,0,0, 0.5);*/
+    text-shadow: 0px 0.05em   0px #b2a98f,
+                 0px 0.1em 10px rgba(0,0,0,0.23),
+                 0px 0.15em  2px rgba(0,0,0,0.2),
+                 0px 0.2em 30px rgba(0,0,0,0.5);
+}
+.exciting{
+    font-size: 6em;
+}
+.sub-exciting{
+    font-size: 4em;
+}
+.super-sub-exciting{
+    font-size: 2em;
+    text-shadow: 0.1em 0.1em 0px rgba(0,0,0, 0.5)
+}

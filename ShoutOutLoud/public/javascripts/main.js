@@ -1,3 +1,4 @@
+var isShift = false;
 $(document).ready(function(){
 	$(".handle").click(function(){
 		var handle = $(this).attr("data-handle");
@@ -21,8 +22,36 @@ $(document).ready(function(){
 			});
 		}
 	});
+	$('.compose').keydown(function(e){
+		if(e.keyCode==16)
+			isShift = true;
+	});
+	$(document).keyup(function(e){
+		if(e.keyCode==16)
+			isShift=false;
+	});
 	$('.compose').keyup(function(e){
-		console.log(e);
+		if(e.keyCode==16)
+			isShift=false;
+		if(e.keyCode==13 && $('.compose').html().length > 0){
+			if(!isShift){
+				e.preventDefault();
+				$.ajax({
+					url:"/compose",
+					type:"POST",
+					data:{
+						'content':$('.compose').text(),
+						'handle':$('user').attr("handle")
+					}, 
+					success:function(session, status){
+						console.log("weeee");
+						$(".compose").attr("clicked", "false");
+						$(".compose").addClass("unclicked");
+						$(".compose").html("");
+					}
+				});
+			}
+		}
 	});
 });
 

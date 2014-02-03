@@ -14,6 +14,10 @@
 	.unclicked{
 		color: #bfbfbf;
 	}
+	[contenteditable][placeholder]:empty:before {
+		content: attr(placeholder);
+		color: #bababa;
+	}
 </style>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -22,7 +26,9 @@
 			if(box.attr("clicked")=="false"){
 				box.removeClass("unclicked");
 				box.attr("clicked", "true");
+				box.text("");
 				box.html("");
+				console.log("cleared");
 			}
 		});
 		$('.compose').bind("DOMSubtreeModified",function(){
@@ -35,9 +41,7 @@
 </script>
 <div class="shout-container" id="desktop-control">
 	<div class="shout">
-		<div class="compose unclicked" clicked="false" contenteditable="true">
-			Compose Shout...
-		</div>
+		<div class="compose unclicked" placeholder="Compose Shout..." clicked="false" contenteditable></div>
 		<div class="compose-control">
 			<span class="characters-left" style="color:rgb(0,200,0);">140</span>
 			<button class="btn btn-default" type="submit">Shout!</button>
