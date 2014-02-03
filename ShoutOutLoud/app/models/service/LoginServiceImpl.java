@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
     @Override
-    public Profile register(String email, String full_name, String handle, String password, String location){
+    public Profile register(String email, String fullName, String handle, String password, String location){
         Connection dbConn = DBUtils.getDBConnection();
         Profile profile = null;
 
@@ -49,13 +49,13 @@ public class LoginServiceImpl implements LoginService {
             preparedSQL = dbConn.prepareStatement(profileInsertSQL);
             preparedSQL.setLong(1, profileId);
             preparedSQL.setString(2, handle);
-            preparedSQL.setString(3, full_name);
-            preparedSQL.setString(4, email);
+            preparedSQL.setString(3, fullName);
+            preparedSQL.setString(4, location);
             preparedSQL.setString(5, password);
-            preparedSQL.setString(6, location);
+            preparedSQL.setString(6, email);
             preparedSQL.executeUpdate();
 
-            profile = new Profile(profileId, full_name, email, handle, location);
+            profile = new Profile(profileId, fullName, email, handle, location);
         } catch (SQLException e){
             Logger.error("Failed to insert profile for handle: " + handle);
             e.printStackTrace();
