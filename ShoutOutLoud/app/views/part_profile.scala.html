@@ -1,4 +1,5 @@
 @(user: models.Profile, me: String, tweets: List[models.Tweet])
+<div id="all-shouts" src="user/@user.getHandle()" tapped="false">
 <div class="shout-container">
 	<div class="shout">
 		<div id="them">
@@ -21,7 +22,6 @@
 		@part_profile_stats(user.getNumTweets, user.getNumFollowers, user.getNumFollowing)
 	</div>
 </div>
-<div id="all-shouts" src="user/@user.getHandle()" tapped="false">
 @if(tweets.length > 0){
 	@for(t <- tweets){
 		@part_shout(t)
