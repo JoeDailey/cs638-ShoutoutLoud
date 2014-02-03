@@ -165,7 +165,11 @@ body{
 	border:1px solid #e1e1e1;
 }
 #trends{
-	margin-top: 10px;
+	margin-top: 0px;
+}
+#trends{ 
+	margin: 0px;
+	font-size: 1em;
 }
 @media (min-width: 1200px) {
 	.profile-stats div:nth-child(1), .profile-stats div:nth-child(2){

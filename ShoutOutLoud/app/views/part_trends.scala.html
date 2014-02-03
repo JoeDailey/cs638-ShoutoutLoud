@@ -1,10 +1,11 @@
 @(trends: List[models.Trend])
 <div class="shout-container" id="trends">
-	<div class="shout">
+						<div class="shout">
+
 		@if(trends.length > 0){
 			@for(t <- trends){
-				<a href="/search/@t.getKeyword()"><h3>@t.getKeyword()</h3></a>
+							<a href="/search/@t.getKeyword()"><h3>@t.getKeyword()</h3></a>
 			}
 		}
-	</div>
-</div>
+				</div>
+					</div>
