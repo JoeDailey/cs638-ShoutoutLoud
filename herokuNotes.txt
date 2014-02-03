@@ -8,7 +8,7 @@
 8. heroku config | grep HEROKU_POSTGRESQL to see your created databases
 9. heroku pg:promote <NAME_OF_DB_TO_PROMOTE>
 10. heroku addons:add pgbackups
-11. heroku addons:add pgbackups '<link.to.db.dump>
+11. heroku pgbackups:restore DATABASE_URL '<link.to.db.dump>'
 12. heroku open
 
 
