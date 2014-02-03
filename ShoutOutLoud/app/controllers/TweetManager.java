@@ -48,6 +48,8 @@ public class TweetManager extends Controller {
 			Logger.info("Tweet successfully added !!");
 		}
 		
+		Profile me = ProfileManager.getCurrentSessionUser();
+		session(Constants.USER_NUM_TWEETS, Integer.toString(me.getNumTweets() + 1));
 		return redirect("/feed");
 	}
 	
@@ -61,11 +63,7 @@ public class TweetManager extends Controller {
 		if(session().get(Constants.USER_HANDLE) == null)
             return redirect("/");
         else{
-			Profile user = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
-										session().get(Constants.USER_FULL_NAME),
-										session().get(Constants.USER_EMAIL),
-										session().get(Constants.USER_HANDLE),
-										session().get(Constants.USER_LOCATION));
+        	Profile user = ProfileManager.getCurrentSessionUser();
         	if(maxId==100000){
 
 				List<Trend> trends = trendService.getTrends();

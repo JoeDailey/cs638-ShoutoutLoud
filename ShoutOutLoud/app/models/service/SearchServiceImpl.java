@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -53,6 +54,9 @@ public class SearchServiceImpl implements SearchService {
 			e.printStackTrace();
 		}		
 		
+		Collections.sort(tweets);
+		Collections.reverse(tweets);
+
 		DBUtils.cleanDBResources(dbConn, preparedSql);
 		return tweets;	
 	}
@@ -91,7 +95,10 @@ public class SearchServiceImpl implements SearchService {
 			Logger.error("Failed to load tweet for keyword : " + keyword);
 			e.printStackTrace();
 		}		
-		
+
+		Collections.sort(tweets);
+		Collections.reverse(tweets);
+
 		DBUtils.cleanDBResources(dbConn, preparedSql);
 		return tweets;	
 	}
