@@ -82,7 +82,7 @@ public class TweetServiceImpl implements TweetService {
 		List<Tweet> subscriberTweets = Lists.newArrayList();
 		String tweetFetchSQL = " SELECT f.tgt_uid AS uid, t.id AS tid, t.content, t.create_time " +
 			" FROM following f JOIN user_to_tweet u ON (f.tgt_uid = u.uid) " +
-			" JOIN tweet t ON (u.tid = t.id) WHERE f.src_uid = ? AND t.id < ? LIMIT ? ";
+			" JOIN tweet t ON (u.tid = t.id) WHERE f.src_uid = ? AND t.id < ? ORDER BY t.id DESC LIMIT ? ";
 		PreparedStatement preparedSql = null;
 		try {
 			preparedSql = dbConn.prepareStatement(tweetFetchSQL);
