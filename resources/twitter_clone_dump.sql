@@ -29,18 +29,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: follower; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
---
-
-CREATE TABLE follower (
-    src_uid integer NOT NULL,
-    tgt_uid integer NOT NULL
-);
-
-
-ALTER TABLE public.follower OWNER TO db_user;
-
---
 -- Name: following; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
 --
 
@@ -51,6 +39,16 @@ CREATE TABLE following (
 
 
 ALTER TABLE public.following OWNER TO db_user;
+
+--
+-- Name: follower; Type: VIEW; Schema: public; Owner: db_user
+--
+
+CREATE VIEW follower AS
+    SELECT following.tgt_uid AS src_uid, following.src_uid AS tgt_uid FROM following;
+
+
+ALTER TABLE public.follower OWNER TO db_user;
 
 --
 -- Name: profile; Type: TABLE; Schema: public; Owner: db_user; Tablespace: 
@@ -106,20 +104,17 @@ CREATE TABLE user_to_tweet (
 ALTER TABLE public.user_to_tweet OWNER TO db_user;
 
 --
--- Data for Name: follower; Type: TABLE DATA; Schema: public; Owner: db_user
---
-
-COPY follower (src_uid, tgt_uid) FROM stdin;
-1	3
-\.
-
-
---
 -- Data for Name: following; Type: TABLE DATA; Schema: public; Owner: db_user
 --
 
 COPY following (src_uid, tgt_uid) FROM stdin;
 3	1
+1	3
+7	6
+1	6
+1	7
+7	1
+7	6
 \.
 
 
@@ -130,6 +125,14 @@ COPY following (src_uid, tgt_uid) FROM stdin;
 COPY profile (id, handle, full_name, location, password, email) FROM stdin;
 1	test	Shishir Prasad	Madison	test	test@gmail.com
 3	skp	Mohan	Madison	skp	skp@gmail.com
+4	tHandle	tName	tLocation	tPass	tEmail
+5	test	test	test	Madison	test@ds
+6	shout	shout	shout	Madison	shout@ds
+7	tHandle	tName	tEmail	tPass	tLocation
+8	6ac5d61a-320b-4962-9019-137c8ba79203	tName	tEmail	tPass	tLocation
+9	911c82ce-83ba-4b7a-8cd1-3798b7645a12	tName	tEmail	tPass	tLocation
+10	5517ea1f-d28b-4d57-b40d-034d13f71ccb	tName	tEmail	tPass	tLocation
+11	b0e2e669-4878-4790-9571-d8d40ea72a99	tName	tEmail	tPass	tLocation
 \.
 
 
@@ -138,16 +141,16 @@ COPY profile (id, handle, full_name, location, password, email) FROM stdin;
 --
 
 COPY trend (keyword, count) FROM stdin;
-f283d990-1156-4d42-983b-115020be8abc	1
-hello	2
-13367f46-966b-46ec-b417-b46c30c8cae6	1
-#test	3
-world	2
-97078c6e-a8ee-4236-9f23-71fcb4c028c6	1
-test	11
-from	11
-class	11
-tweet	11
+ada10ee7-e481-4bd7-83b9-6eb415952419	1
+b2027c26-33d8-4844-a7fd-e0a098936954	1
+order	1
+7ad2f419-105d-4e5a-b6e5-b83a5ef820d8	1
+test	9
+ce5869dd-a134-47a6-bbf6-2819fa3a469c	1
+tweet	9
+b74be388-8b08-4305-b487-7b59b2551700	1
+class	9
+from	9
 \.
 
 
@@ -170,6 +173,16 @@ COPY tweet (id, content, create_time) FROM stdin;
 12	tweet from test class 254a9659-6a4e-45c1-92fd-15af754aac80	2014-01-30 17:23:17.0586
 13	tweet from test class 13367f46-966b-46ec-b417-b46c30c8cae6	2014-01-30 17:26:16.610851
 14	tweet from test class 97078c6e-a8ee-4236-9f23-71fcb4c028c6	2014-01-30 17:27:06.760846
+15	tweet from test class 2ff3836f-8164-4ff0-a5d9-635acbe55171	2014-02-02 13:15:55.392655
+16	tweet from test class 5226dddb-42f6-4785-a2fe-d571551582e5	2014-02-02 13:17:31.580497
+17	tweet from test class b74be388-8b08-4305-b487-7b59b2551700	2014-02-02 13:18:47.766819
+18	tweet from test class 7ad2f419-105d-4e5a-b6e5-b83a5ef820d8	2014-02-02 13:20:35.799334
+19	a new world order #uw	2014-02-02 18:16:37.810429
+20	tweet from test class ce5869dd-a134-47a6-bbf6-2819fa3a469c	2014-02-02 18:26:29.631323
+21	tweet from test class bce62ba0-0ff5-4d18-b7d4-0cd32a5d3e1d	2014-02-02 18:29:23.118998
+22	tweet from test class ada10ee7-e481-4bd7-83b9-6eb415952419	2014-02-02 18:30:20.992571
+23	tweet from test class b2027c26-33d8-4844-a7fd-e0a098936954	2014-02-02 18:48:33.398925
+24	tweet from test class 1235e298-3dd5-4c42-b3e7-643179f1c9f0	2014-02-02 19:02:16.28988
 \.
 
 
@@ -192,6 +205,16 @@ COPY user_to_tweet (uid, tid) FROM stdin;
 1	12
 1	13
 1	14
+1	15
+1	16
+1	17
+1	18
+3	19
+5	20
+5	21
+5	22
+5	23
+5	24
 \.
 
 
@@ -221,13 +244,6 @@ CREATE UNIQUE INDEX user_idx ON profile USING btree (id);
 --
 
 CREATE INDEX user_idx1 ON user_to_tweet USING btree (uid);
-
-
---
--- Name: users_followed_idx; Type: INDEX; Schema: public; Owner: db_user; Tablespace: 
---
-
-CREATE INDEX users_followed_idx ON follower USING btree (src_uid);
 
 
 --
@@ -267,22 +283,6 @@ ALTER TABLE ONLY following
 
 ALTER TABLE ONLY following
     ADD CONSTRAINT user_fk3 FOREIGN KEY (tgt_uid) REFERENCES profile(id) ON DELETE CASCADE;
-
-
---
--- Name: user_fk4; Type: FK CONSTRAINT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY follower
-    ADD CONSTRAINT user_fk4 FOREIGN KEY (src_uid) REFERENCES profile(id) ON DELETE CASCADE;
-
-
---
--- Name: user_fk5; Type: FK CONSTRAINT; Schema: public; Owner: db_user
---
-
-ALTER TABLE ONLY follower
-    ADD CONSTRAINT user_fk5 FOREIGN KEY (tgt_uid) REFERENCES profile(id) ON DELETE CASCADE;
 
 
 --

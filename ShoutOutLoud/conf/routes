@@ -21,5 +21,8 @@ GET     /feed                   controllers.TweetManager.feed(maxId: Long ?= 100
 #Trends
 GET     /trends                     controllers.TrendManager.trends()
 
+# Profile
+GET     /follow                     controllers.ProfileManager.follow(targetHandle: String)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
