@@ -12,7 +12,7 @@ public interface LoginService {
 	
 	public boolean login(String handle, String password);
 
-	public Profile register(String email, String full_name, String handle, String password, String location);
+	public Profile register(String email, String fullName, String handle, String password, String location);
 
 	public boolean authenticate(String handle, String password);
 }

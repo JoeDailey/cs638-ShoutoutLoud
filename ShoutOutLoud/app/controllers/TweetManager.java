@@ -58,7 +58,7 @@ public class TweetManager extends Controller {
 	 */
 	public static Result feed(Long maxId)
 	{
-		Profile user = new Profile(	0,
+		Profile user = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
 									session().get(Constants.USER_FULL_NAME),
 									session().get(Constants.USER_EMAIL),
 									session().get(Constants.USER_HANDLE),

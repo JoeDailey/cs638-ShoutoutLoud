@@ -1,0 +1,28 @@
+1. Comment out default db url, user, and password.
+2. Initialize new git repo at project root with git init.
+3. git add .
+4. git commit -m "init"
+5. heroku create
+6. git push heroku master (this will take a while)
+7. From project root run: heroku addons:add heroku-postgresql:dev
+8. heroku config | grep HEROKU_POSTGRESQL to see your created databases
+9. heroku pg:promote <NAME_OF_DB_TO_PROMOTE>
+10. heroku addons:add pgbackups
+11. heroku pgbackups:restore DATABASE_URL '<link.to.db.dump>'
+12. heroku open
+
+
+NOTES:
+-Import db dump from this url: https://s3.amazonaws.com/carl_pratt_sql_dump/twitter_clone_dump.sql (You can use any hosting service with public access to html download link)
+
+-If you want to rename the project on heroku.com, you will need to remove the git remote and reset it to the remote name matches the new project name.
+git remote rm heroku
+git remote add heroku git@heroku.com:yourappname.git
+
+Helpful links:
+
+-Creating a new DB
+https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on
+
+-Importing sql dump
+https://devcenter.heroku.com/articles/heroku-postgres-import-export#import
