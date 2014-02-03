@@ -37,11 +37,7 @@ public class Search extends Controller {
 		if(session().get(Constants.USER_HANDLE) == null)
             return redirect("/");
         else{
-			Profile me = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
-										session().get(Constants.USER_FULL_NAME),
-										session().get(Constants.USER_EMAIL),
-										session().get(Constants.USER_HANDLE),
-										session().get(Constants.USER_LOCATION));
+        	Profile me = ProfileManager.getCurrentSessionUser();
 			
         	if(lastId==100000){
         		Profile user = searchService.searchProfileByHandle(handle);
@@ -96,11 +92,7 @@ public class Search extends Controller {
 		if(session().get(Constants.USER_HANDLE) == null)
             return redirect("/");
         else{
-			Profile me = new Profile(	Long.parseLong(session().get(Constants.USER_ID)),
-										session().get(Constants.USER_FULL_NAME),
-										session().get(Constants.USER_EMAIL),
-										session().get(Constants.USER_HANDLE),
-										session().get(Constants.USER_LOCATION));
+        	Profile me = ProfileManager.getCurrentSessionUser();
         	if(lastId==100000){
 				System.out.println(lastId);
 				List<Tweet> tweets = searchService.searchTweetsByKeyword(keyword, lastId);
