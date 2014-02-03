@@ -4,17 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-import com.google.common.collect.Lists;
-
-import play.Logger;
 import models.Constants;
 import models.Profile;
 import models.Tweet;
 import models.utils.DBUtils;
+import play.Logger;
+
+import com.google.common.collect.Lists;
 
 public class SearchServiceImpl implements SearchService {
 
@@ -30,7 +29,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		String tweetFetchSQL = "SELECT t.id AS tid, t.content, t.create_time FROM " + 
 				Constants.USER_TO_TWEET_TBL + " u JOIN " + Constants.TWEET_TBL + 
-				" t ON(u.tid = t.id) WHERE u.uid = ? AND t.id < ? LIMIT ?";
+				" t ON(u.tid = t.id) WHERE u.uid = ? AND t.id < ? ORDER BY t.id DESC LIMIT ?";
 		PreparedStatement preparedSql = null;
 		try {
 			preparedSql = dbConn.prepareStatement(tweetFetchSQL);
@@ -53,9 +52,6 @@ public class SearchServiceImpl implements SearchService {
 			Logger.error("Failed to load tweet for handle : " + handle);
 			e.printStackTrace();
 		}		
-		
-		Collections.sort(tweets);
-		Collections.reverse(tweets);
 
 		DBUtils.cleanDBResources(dbConn, preparedSql);
 		return tweets;	
@@ -72,7 +68,7 @@ public class SearchServiceImpl implements SearchService {
 		
 		String tweetFetchSQL = "SELECT p.id AS uid, t.id AS tid, t.content, t.create_time FROM tweet t"
 				+ " JOIN user_to_tweet u ON (t.id = u.tid) JOIN profile p ON (p.id = u.uid) "
-				+ " WHERE t.content LIKE '%" + keyword +"%' AND t.id < ? LIMIT ?";
+				+ " WHERE t.content LIKE '%" + keyword +"%' AND t.id < ? ORDER BY t.id DESC LIMIT ?";
 		PreparedStatement preparedSql = null;
 		try {
 			preparedSql = dbConn.prepareStatement(tweetFetchSQL);
@@ -95,9 +91,6 @@ public class SearchServiceImpl implements SearchService {
 			Logger.error("Failed to load tweet for keyword : " + keyword);
 			e.printStackTrace();
 		}		
-
-		Collections.sort(tweets);
-		Collections.reverse(tweets);
 
 		DBUtils.cleanDBResources(dbConn, preparedSql);
 		return tweets;	
