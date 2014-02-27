@@ -1,4 +1,10 @@
 cs638-ShoutoutLoud
 ==================
 
-Twitter recreation for cs638 at UW madison.
+Server: Shishir Prasad, Carl Pratt, Joe Dailey
+
+
+Front-end: Joe Dailey
+
+
+Twitter recreation for cs638 Starting a Software Compnay at UW madison.
